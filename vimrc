@@ -2,8 +2,6 @@
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
-color desert
-
 set guifont=Bitstream\ Vera\ Sans\ Mono:h14
 "set guifont=Source\ Code\ Pro\ Light:h17
 
@@ -16,6 +14,9 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
+" Color Scheme
+colorscheme solarized
+set background=dark
 
 " Syntax Highlighting
 syntax on
