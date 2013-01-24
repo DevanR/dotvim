@@ -13,6 +13,15 @@ set spell
 set paste             " Eliminates auto-tabbing with Copy/Paste
 
 ""
+"" Backups
+""
+set history=1000 "store a large command history. Search using q:
+set nobackup      " Dont store pointless backup files                                                                 
+set nowritebackup " See :help backup                                                              
+set swapfile      " Do use the swap file though incase of crash                                                              
+set dir=~/.vim/swap//,/var/tmp//,/tmp//,.   " save swap files in one convenient location
+
+""
 "" UI
 ""
 if has("gui_running")
