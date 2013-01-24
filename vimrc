@@ -15,10 +15,10 @@ set paste             " Eliminates auto-tabbing with Copy/Paste
 ""
 "" Backups
 ""
-set history=1000 "store a large command history. Search using q:
-set nobackup      " Dont store pointless backup files                                                                 
-set nowritebackup " See :help backup                                                              
-set swapfile      " Do use the swap file though incase of crash                                                              
+set history=1000                            "store a large command history. Search using q:
+set nobackup                                " Dont store pointless backup files                                                                 
+set nowritebackup                           " See :help backup                                                              
+set swapfile                                " Do use the swap file though incase of crash                                                              
 set dir=~/.vim/swap//,/var/tmp//,/tmp//,.   " save swap files in one convenient location
 
 ""
@@ -127,3 +127,4 @@ nmap <leader>gb :Gblame<CR>                              " Fugitive blame
 
 nmap <leader>n :NERDTreeToggle<CR>                      " Toggle NERDTree
 
+nmap <leader>u :GundoToggle<CR>                      " Toggle NERDTree
