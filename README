@@ -22,7 +22,9 @@ Upgrading all bundled plugins
 
     git submodule foreach git pull origin master
 
-Additional Files
+Notes
 
-    Markdown
-    ctags
+    Install Markdown (http://daringfireball.net/projects/markdown/)
+    Install ctags
+    On OSX: Run git config --global core.editor /usr/bin/vim
+            Install Solarized palettes for Terminal and iTerm2
