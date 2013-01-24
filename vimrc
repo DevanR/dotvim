@@ -9,35 +9,56 @@ call pathogen#helptags()
 set nocompatible      " Use vim, no vi defaults
 set number            " Show line numbers
 set ruler             " Show line and column number
-set encoding=utf-8    " Set default encoding to UTF-8
 set spell
-set smartindent
 set paste             " Eliminates auto-tabbing with Copy/Paste
+
+""
+"" UI
+""
+if has("gui_running")
+    set guioptions-=T
+    set guioptions+=e
+    set t_Co=256
+    set guitablabel=%M\ %t
+endif
+
 set guifont=Bitstream\ Vera\ Sans\ Mono:h14
-"set guifont=Source\ Code\ Pro\ Light:h17
 syntax enable         " Turn on syntax highlighting allowing local overrides
 colorscheme solarized
 set background=dark
+set encoding=utf-8    " Set default encoding to UTF-8
 
 ""
 "" Whitespace
 ""
 
 set nowrap                        " don't wrap lines
-set tabstop=2                     " a tab is two spaces
-set shiftwidth=2                  " an autoindent (with <<) is two spaces
+set tabstop=4                     " a tab is four spaces
+set shiftwidth=4                  " an autoindent (with <<) is two spaces
 set expandtab                     " use spaces, not tabs
 set backspace=indent,eol,start    " backspace through everything in insert mode
+set smartindent                   " When searching try to be smart about cases
 
 
 ""
 "" Searching
 ""
 
+set showmatch  " Show matching brackets when text indicator is over them
 set hlsearch    " highlight matches
 set incsearch   " incremental searching
 set ignorecase  " searches are case insensitive...
 set smartcase   " ... unless they contain at least one capital letter
+
+
+""
+"" Sound
+""
+
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
 
 ""
 "" File types
@@ -55,9 +76,6 @@ if has("autocmd")
 
  " Treat JSON files like JavaScript
   au BufNewFile,BufRead *.json set ft=javascript
-
-  " make Python follow PEP8 for whitespace ( http://www.python.org/dev/peps/pep-0008/ )
-  au FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4
 
   " Remember last location in file, but not for commit messages.
   " see :help last-position-jump
@@ -80,14 +98,13 @@ if has("statusline") && !&cp
   set statusline+=[%b][0x%B]
 endif
 
+
 ""
-"" Helpers
+"" Input Mappings
 ""
 
-" Mouse events
-set mouse=a
+set mouse=a                                              " Mouse events
 map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
 
-"Markdown to HTML  
-nmap <leader>md :%!/usr/bin/Markdown.pl --html4tags <cr>
+nmap <leader>md :%!/usr/bin/Markdown.pl --html4tags <cr> " Markdown to HTML
