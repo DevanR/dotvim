@@ -22,6 +22,19 @@ set swapfile                                " Do use the swap file though incase
 set dir=~/.vim/swap//,/var/tmp//,/tmp//,.   " save swap files in one convenient location
 
 ""
+"" Undo processing only works on latest vim hence check for the new 7.3 feature
+""
+if exists('+colorcolumn')                                                       
+         set colorcolumn=80        " draw a line at 80 chars                                              
+         set undodir=~/.vim/undodir    " central location of all undo files                                          
+         set undofile                   " use undos                                         
+         set undoreload=1000            " save up to this many lines to the undo file when it is change outside vim.
+                                        " smaller buffers than this number will not be saved to the undo file to save memory
+                                                          
+endif                                                                           
+set undolevels=1000       "number of undos
+
+""
 "" UI
 ""
 if has("gui_running")
