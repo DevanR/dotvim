@@ -71,7 +71,7 @@ if has("autocmd")
   au FileType make setlocal noexpandtab
 
   " Make sure all markdown files have the correct filetype set and setup wrapping
-  au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown
+  au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} setf markdown
   au FileType markdown call s:setupWrapping()
 
  " Treat JSON files like JavaScript
@@ -108,3 +108,13 @@ map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
 
 nmap <leader>md :%!/usr/bin/Markdown.pl --html4tags <cr> " Markdown to HTML
+
+nmap <leader>t :TagbarToggle<CR>                        " Toggle Tagbar
+
+nmap <leader>gd :Gdiff<CR>                               " Fugitive diff
+nmap <leader>gs :Gstatus<CR>                             " Fugitive status
+nmap <leader>gc :Gcommit<CR>                             " Fugitive commit
+nmap <leader>gb :Gblame<CR>                              " Fugitive blame
+
+nmap <leader>n :NERDTreeToggle<CR>                      " Toggle NERDTree
+
