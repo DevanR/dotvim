@@ -1,3 +1,7 @@
+" Pathogen
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+
 color desert
 
 set guifont=Bitstream\ Vera\ Sans\ Mono:h14
@@ -11,6 +15,7 @@ set smartindent
 set tabstop=4
 set shiftwidth=4
 set expandtab
+
 
 " Syntax Highlighting
 syntax on
