@@ -27,7 +27,6 @@ set nowrap                        " don't wrap lines
 set tabstop=2                     " a tab is two spaces
 set shiftwidth=2                  " an autoindent (with <<) is two spaces
 set expandtab                     " use spaces, not tabs
-set list                          " Show invisible characters
 set backspace=indent,eol,start    " backspace through everything in insert mode
 
 
@@ -89,10 +88,6 @@ endif
 set mouse=a
 map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
-
-" Automatically save folds
-au BufWinLeave * silent! mkview
-au BufWinEnter * silent! loadview
 
 "Markdown to HTML  
 nmap <leader>md :%!/usr/bin/Markdown.pl --html4tags <cr>
