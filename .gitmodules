@@ -16,6 +16,3 @@
 [submodule "bundle/solarized"]
 	path = bundle/solarized
 	url = https://github.com/altercation/vim-colors-solarized.git
-[submodule "/Users/dr/.vim/bundle/gundo"]
-	path = /Users/dr/.vim/bundle/gundo
-	url = http://github.com/sjl/gundo.vim.git
