@@ -7,7 +7,7 @@ call pathogen#helptags()
 ""
 
 set nocompatible      " Use vim, no vi defaults
-set number            " Show line numbers
+set rnu               " Show relative line number
 set ruler             " Show line and column number
 set spell
 set paste             " Eliminates auto-tabbing with Copy/Paste
