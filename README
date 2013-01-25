@@ -22,6 +22,21 @@ Upgrading all bundled plugins
 
     git submodule foreach git pull origin master
 
+Add a plugin
+
+    cd ~/.vim
+    git submodule add https://..... bundle/<plugin_name>
+    git commit .
+    git push
+    git pull
+
+Remove a git module
+
+    Delete the relevant section from the .gitmodules file.
+    Delete the relevant section from .git/config.
+    Run git rm --cached path_to_submodule (no trailing slash).
+    Commit and delete the now untracked submodule files.
+
 Notes
 
     Install Markdown (http://daringfireball.net/projects/markdown/)
