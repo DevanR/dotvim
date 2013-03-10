@@ -7,7 +7,9 @@ call pathogen#helptags()
 ""
 
 set nocompatible      " Use vim, no vi defaults
-set rnu               " Show relative line number
+if version >= 703
+    set rnu               " Show relative line number
+endif
 set ruler             " Show line and column number
 set spell
 set paste             " Eliminates auto-tabbing with Copy/Paste
@@ -118,13 +120,15 @@ map <ScrollWheelDown> <C-E>
 
 nmap <leader>md :%!/usr/bin/Markdown.pl --html4tags <cr> " Markdown to HTML
 
-nmap <leader>t :TagbarToggle<CR>                        " Toggle Tagbar
+noremap <Leader>s :update<CR>                            " Quick save
+
+nmap <leader>t :TagbarToggle<CR>                         " Toggle Tagbar
 
 nmap <leader>gd :Gdiff<CR>                               " Fugitive diff
 nmap <leader>gs :Gstatus<CR>                             " Fugitive status
 nmap <leader>gc :Gcommit<CR>                             " Fugitive commit
 nmap <leader>gb :Gblame<CR>                              " Fugitive blame
 
-nmap <leader>n :NERDTreeToggle<CR>                      " Toggle NERDTree
+nmap <leader>n :NERDTreeToggle<CR>                       " Toggle NERDTree
 
-nmap <leader>u :GundoToggle<CR>                      " Toggle NERDTree
+nmap <leader>u :GundoToggle<CR>                          " Toggle NERDTree
