@@ -12,7 +12,9 @@ if version >= 703
 endif
 set ruler             " Show line and column number
 set spell
-set paste             " Eliminates auto-tabbing with Copy/Paste
+
+" Removed due to compatibility with SnipMate plugin
+"set paste             " Eliminates auto-tabbing with Copy/Paste
 
 ""
 "" Backups
@@ -34,6 +36,7 @@ if has("gui_running")
 endif
 
 set guifont=Bitstream\ Vera\ Sans\ Mono:h14
+""set guifont=Source\ Code\ Pro:h14
 syntax enable         " Turn on syntax highlighting allowing local overrides
 colorscheme solarized
 set background=dark
