@@ -134,4 +134,4 @@ nmap <leader>gb :Gblame<CR>                              " Fugitive blame
 
 nmap <leader>n :NERDTreeToggle<CR>                       " Toggle NERDTree
 
-nmap <leader>u :GundoToggle<CR>                          " Toggle NERDTree
+nmap <leader>u :GundoToggle<CR>                          " Toggle Gundo
