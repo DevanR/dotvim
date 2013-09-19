@@ -7,6 +7,7 @@ call pathogen#helptags()
 ""
 
 set nocompatible      " Use vim, no vi defaults
+set number
 if version >= 703
     set rnu               " Show relative line number
 endif
