@@ -130,7 +130,7 @@ endif
 ""
 "" Input Mappings
 ""
-let mapleader = ","
+let mapleader = "\\"
 set mouse=a                                              " Mouse events
 map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
@@ -149,3 +149,9 @@ nmap <leader>u :GundoToggle<CR>                          " Toggle Gundo
 "" Fugitive
 ""
 set previewheight=20
+
+""
+"" Syntastic
+""
+let g:syntastic_cpp_compiler = 'g++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
