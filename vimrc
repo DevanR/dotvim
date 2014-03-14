@@ -62,7 +62,7 @@ let &colorcolumn=join(range(81,999),",")
 set showmatch  " Show matching brackets when text indicator is over them
 set hlsearch    " highlight matches
 set incsearch   " incremental searching
-"set ignorecase  " searches are case insensitive...
+set ignorecase  " searches are case insensitive...
 set smartcase   " ... unless they contain at least one capital letter
 
 ""
@@ -115,6 +115,11 @@ if has("autocmd")
 endif
 
 ""
+"" OmniComplete
+""
+set omnifunc=syntaxcomplete#Complete
+
+""
 "" Status line
 ""
 if has("statusline") && !&cp
@@ -160,7 +165,7 @@ let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 ""
 "" Pymode
 ""
-let g:pymode = 1
+let g:pymode = 0
 let g:pymode_warnings = 1
 let g:pymode_trim_whitespaces = 1
 let g:pymode_options = 1
