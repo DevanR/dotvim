@@ -165,17 +165,26 @@ let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 ""
 "" Pymode
 ""
-let g:pymode = 0
-let g:pymode_warnings = 1
-let g:pymode_trim_whitespaces = 1
+let g:pymode = 1
+let g:pymode_doc = 1
+let g:pymode_lint = 1
+let g:pymode_rope = 1
+let g:pymode_motion =1
+let g:pymode_syntax = 1
 let g:pymode_options = 1
-let g:pymode_quickfix_maxheight = 3
-let g:pymode_quickfix_maxheight = 6
 let g:pymode_indent = []
 let g:pymode_folding = 1
-let g:pymode_doc = 1
+let g:pymode_warnings = 1
 let g:pymode_doc_bind = 'K'
-let g:pymode_lint = 1
-let g:pymode_lint_on_write = 1
+let g:pymode_lint_sort = []
 let g:pymode_lint_message = 1
+<<<<<<< HEAD
 
+=======
+let g:pymode_lint_on_write = 1
+let g:pymode_trim_whitespaces = 1
+let g:pymode_quickfix_minheight = 3
+let g:pymode_quickfix_maxheight = 6
+let g:pymode_rope_goto_definition_bind = '<C-c>g'
+let g:pymode_lint_checkers = ['pyflakes', 'pep8']
+>>>>>>> aea13a0df1ae5610400796ecdd1c320d0fb69ff1
