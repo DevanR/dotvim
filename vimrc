@@ -143,7 +143,7 @@ map <ScrollWheelDown> <C-E>
 
 nmap <leader>md :%!/usr/bin/Markdown.pl --html4tags <cr> " Markdown to HTML
 noremap <Leader>s :update<CR>                            " Quick save
-nmap <leader>b :TagbarToggle<CR>                         " Toggle Tagbar
+nmap <leader>t :TagbarToggle<CR>                         " Toggle Tagbar
 nmap <leader>gd :Gdiff<CR>                               " Fugitive diff
 nmap <leader>gs :Gstatus<CR>                             " Fugitive status
 nmap <leader>gc :Gcommit<CR>                             " Fugitive commit
