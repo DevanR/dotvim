@@ -136,14 +136,14 @@ endif
 ""
 "" Input Mappings
 ""
-let mapleader = "\\"
+let mapleader = ";"
 set mouse=a                                              " Mouse events
 map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
 
 nmap <leader>md :%!/usr/bin/Markdown.pl --html4tags <cr> " Markdown to HTML
 noremap <Leader>s :update<CR>                            " Quick save
-nmap <leader>t :TagbarToggle<CR>                         " Toggle Tagbar
+nmap <leader>b :TagbarToggle<CR>                         " Toggle Tagbar
 nmap <leader>gd :Gdiff<CR>                               " Fugitive diff
 nmap <leader>gs :Gstatus<CR>                             " Fugitive status
 nmap <leader>gc :Gcommit<CR>                             " Fugitive commit
@@ -178,4 +178,4 @@ let g:pymode_doc_bind = 'K'
 let g:pymode_lint = 1
 let g:pymode_lint_on_write = 1
 let g:pymode_lint_message = 1
-let g:pymode_rope_goto_definition_bind = '<C-c>g'
+
