@@ -178,13 +178,9 @@ let g:pymode_warnings = 1
 let g:pymode_doc_bind = 'K'
 let g:pymode_lint_sort = []
 let g:pymode_lint_message = 1
-<<<<<<< HEAD
-
-=======
 let g:pymode_lint_on_write = 1
 let g:pymode_trim_whitespaces = 1
 let g:pymode_quickfix_minheight = 3
 let g:pymode_quickfix_maxheight = 6
 let g:pymode_rope_goto_definition_bind = '<C-c>g'
 let g:pymode_lint_checkers = ['pyflakes', 'pep8']
->>>>>>> aea13a0df1ae5610400796ecdd1c320d0fb69ff1
