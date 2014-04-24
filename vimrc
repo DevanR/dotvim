@@ -151,6 +151,10 @@ nmap <leader>gb :Gblame<CR>                              " Fugitive blame
 nmap <leader>n :NERDTreeToggle<CR>                       " Toggle NERDTree
 nmap <leader>u :GundoToggle<CR>                          " Toggle Gundo
 
+imap jj <Esc>                                            " Escape Key
+nmap <leader>q :q!<CR>                                   " Exit w/o Save
+nmap <leader>e :wqa!<CR>                                  " Exit w Save
+
 ""
 "" Fugitive
 ""
@@ -167,6 +171,7 @@ let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 ""
 let g:pymode = 1
 let g:pymode_doc = 1
+let g:pymode_run = 1
 let g:pymode_lint = 1
 let g:pymode_rope = 1
 let g:pymode_motion =1
@@ -182,5 +187,7 @@ let g:pymode_lint_on_write = 1
 let g:pymode_trim_whitespaces = 1
 let g:pymode_quickfix_minheight = 3
 let g:pymode_quickfix_maxheight = 6
-let g:pymode_rope_goto_definition_bind = '<C-c>g'
+let g:pymode_rope_show_doc_bind = 'R'
+let g:pymode_rope_goto_definition_bind = 'D'
+let g:pymode_rope_organize_imports_bind = 'O'
 let g:pymode_lint_checkers = ['pyflakes', 'pep8']
