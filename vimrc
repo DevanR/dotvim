@@ -15,8 +15,7 @@ set spell
 set backspace=indent,eol,start
 set cursorline
 
-" Disabled due to compatibility with SnipMate plugin
-"set paste             " Eliminates auto-tabbing with Copy/Paste
+set paste             " Eliminates auto-tabbing with Copy/Paste
 
 ""
 "" Backups
