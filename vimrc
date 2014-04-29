@@ -15,8 +15,6 @@ set spell
 set backspace=indent,eol,start
 set cursorline
 
-set paste             " Eliminates auto-tabbing with Copy/Paste
-
 ""
 "" Backups
 ""
@@ -114,11 +112,6 @@ if has("autocmd")
 endif
 
 ""
-"" OmniComplete
-""
-set omnifunc=syntaxcomplete#Complete
-
-""
 "" Status line
 ""
 if has("statusline") && !&cp
@@ -150,9 +143,9 @@ nmap <leader>gb :Gblame<CR>                              " Fugitive blame
 nmap <leader>n :NERDTreeToggle<CR>                       " Toggle NERDTree
 nmap <leader>u :GundoToggle<CR>                          " Toggle Gundo
 
-imap jj <Esc>                                            " Escape Key
-nmap <leader>q :q!<CR>                                   " Exit w/o Save
-nmap <leader>e :wqa!<CR>                                  " Exit w Save
+imap ee <Esc>
+nmap <leader>k :q!<CR>                                   " Exit w/o Save
+nmap <leader>q :wqa!<CR>                                 " Exit w Save
 
 ""
 "" Fugitive
