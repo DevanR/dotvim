@@ -34,7 +34,7 @@ if has("gui_running")
     set guitablabel=%M\ %t
 endif
 
-set guifont=Bitstream\ Vera\ Sans\ Mono:h14
+set guifont=Bitstream\ Vera\ Sans\ Mono:h12
 ""set guifont=Source\ Code\ Pro:h14
 syntax enable         " Turn on syntax highlighting allowing local overrides
 colorscheme solarized
@@ -143,10 +143,6 @@ nmap <leader>gb :Gblame<CR>                              " Fugitive blame
 nmap <leader>n :NERDTreeToggle<CR>                       " Toggle NERDTree
 nmap <leader>u :GundoToggle<CR>                          " Toggle Gundo
 
-imap ee <Esc>
-nmap <leader>k :q!<CR>                                   " Exit w/o Save
-nmap <leader>q :wqa!<CR>                                 " Exit w Save
-
 ""
 "" Fugitive
 ""
@@ -165,7 +161,7 @@ let g:pymode = 1
 let g:pymode_doc = 1
 let g:pymode_run = 1
 let g:pymode_lint = 1
-let g:pymode_rope = 1
+let g:pymode_rope = 0
 let g:pymode_motion =1
 let g:pymode_syntax = 1
 let g:pymode_options = 1
@@ -180,6 +176,6 @@ let g:pymode_trim_whitespaces = 1
 let g:pymode_quickfix_minheight = 3
 let g:pymode_quickfix_maxheight = 6
 let g:pymode_rope_show_doc_bind = 'R'
-let g:pymode_rope_goto_definition_bind = 'D'
-let g:pymode_rope_organize_imports_bind = 'O'
+"let g:pymode_rope_goto_definition_bind = 'D'
+"let g:pymode_rope_organize_imports_bind = 'O'
 let g:pymode_lint_checkers = ['pyflakes', 'pep8']
