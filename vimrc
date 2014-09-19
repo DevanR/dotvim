@@ -48,10 +48,14 @@ set fileencoding=utf-8
 set nowrap                        " don't wrap lines
 set tabstop=4                     " a tab is four spaces
 set shiftwidth=4                  " an autoindent (with <<) is two spaces
+set softtabstop=4                 " People like using real tab character instead of spaces because it makes it easier when pressing BACKSPACE or DELETE, since if the indent is using spaces it will take 4 keystrokes to delete the indent. Using this setting, however, makes VIM see multiple space characters as tabstops, and so <BS> does the right thing and will delete four spaces (assuming 4 is your setting).
 set expandtab                     " use spaces, not tabs
 set backspace=indent,eol,start    " backspace through everything in insert mode
+set autoindent                    " Very painful to live without this (especially with Python)! It means that when you press RETURN and a new line is created, the indent of the new line will match that of the previous line. 
 set smartindent                   " When searching try to be smart about cases
 let &colorcolumn=join(range(81,999),",")
+
+
 
 ""
 "" Searching
@@ -128,7 +132,11 @@ endif
 ""
 "" Input Mappings
 ""
+
 let mapleader = ";"
+
+inoremap jj <ESC>
+
 set mouse=a                                              " Mouse events
 map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
