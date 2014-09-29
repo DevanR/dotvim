@@ -187,3 +187,38 @@ let g:pymode_rope_show_doc_bind = 'R'
 "let g:pymode_rope_goto_definition_bind = 'D'
 "let g:pymode_rope_organize_imports_bind = 'O'
 let g:pymode_lint_checkers = ['pyflakes', 'pep8']
+
+" "
+" " Swap windows
+" "
+" " Instructions
+" " Move to the window to mark for the swap via ctrl-w movement
+" " Type ;m
+" " Move to the window you want to swap
+" " Type ;sw
+
+
+function! MarkWindowSwap()
+    let g:markedWinNum = winnr()
+endfunction
+
+function! DoWindowSwap()
+    "Mark destination
+    let curNum = winnr()
+    let curBuf = bufnr( "%" )
+    exe g:markedWinNum . "wincmd w"
+    "Switch to source and shuffle dest->source
+    let markedBuf = bufnr( "%" )
+    "Hide and open so that we aren't prompted and keep history
+    exe 'hide buf' curBuf
+    "Switch to dest and shuffle source->dest
+    exe curNum . "wincmd w"
+    "Hide and open so that we aren't prompted and keep history
+    exe 'hide buf' markedBuf 
+endfunction
+
+nmap <silent> <leader>m :call MarkWindowSwap()<CR>
+nmap <silent> <leader>sw :call DoWindowSwap()<CR>
+
+
+
