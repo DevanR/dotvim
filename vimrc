@@ -7,9 +7,6 @@ call pathogen#helptags()
 ""
 set nocompatible      " Use vim, no vi defaults
 set number
-"if version >= 703
-"    set rnu            " Show relative line number
-"endif
 set ruler             " Show line and column number
 set spell
 set backspace=indent,eol,start
@@ -57,6 +54,11 @@ let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
+
+""
+"" YouCompleteMe
+""
+let g:ycm_autoclose_preview_window_after_completion=1
 
 ""
 "" Whitespace
@@ -142,7 +144,7 @@ map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
 
 nmap <leader>md :%!/usr/bin/Markdown.pl --html4tags <cr> " Markdown to HTML
-noremap <Leader>s :update<CR>                            " Quick save
+noremap <Leader>l :update<CR>                            " Quick save
 nmap <leader>t :TagbarToggle<CR>                         " Toggle Tagbar
 nmap <leader>gd :Gdiff<CR>                               " Fugitive diff
 nmap <leader>gs :Gstatus<CR>                             " Fugitive status
@@ -150,6 +152,20 @@ nmap <leader>gc :Gcommit<CR>                             " Fugitive commit
 nmap <leader>gb :Gblame<CR>                              " Fugitive blame
 nmap <leader>n :NERDTreeToggle<CR>                       " Toggle NERDTree
 nmap <leader>u :GundoToggle<CR>                          " Toggle Gundo
+
+""
+"" vim-easymotion
+""
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map <Leader>h <Plug>(easymotion-linebackward)
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 
 ""
 "" Leave Ex Mode
@@ -172,6 +188,11 @@ set previewheight=20
 ""
 let g:syntastic_cpp_compiler = 'g++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+
+""
+"" vim-easymotion
+""
+map <Leader> <Plug>(easymotion-prefix)
 
 ""
 "" Pymode
