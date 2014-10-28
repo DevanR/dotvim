@@ -51,6 +51,7 @@ augroup END
 ""
 "" vim-airline
 ""
+let g:Powerline_symbols = 'fancy'
 set laststatus=2
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
