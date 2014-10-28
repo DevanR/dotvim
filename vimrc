@@ -35,7 +35,7 @@ if has("gui_running")
 endif
 
 ""set guifont=Bitstream\ Vera\ Sans\ Mono:h12
-set guifont=Anonymice\ Powerline:h13
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h13
 syntax enable         " Turn on syntax highlighting allowing local overrides
 colorscheme solarized
 set background=dark

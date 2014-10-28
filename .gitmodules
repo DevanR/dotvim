@@ -22,6 +22,6 @@
 [submodule "bundle/vim-airline"]
 	path = bundle/vim-airline
 	url = https://github.com/bling/vim-airline/
-[submodule "bundle/bundle/tmuxline"]
-	path = bundle/bundle/tmuxline
-	url = https://github.com/edkolev/tmuxline.vim
+[submodule "bundle/YouCompleteMe"]
+	path = bundle/YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe
