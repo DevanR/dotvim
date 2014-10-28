@@ -42,18 +42,25 @@ set background=dark
 set encoding=utf-8    " Set default encoding to UTF-8
 set fileencoding=utf-8
 
+"" Bold line number
+hi CursorLineNR cterm=bold
+augroup CLNRSet
+    autocmd! ColorScheme * hi CursorLineNR cterm=bold
+augroup END
+
+
 ""
 "" Whitespace
 ""
-set nowrap                        " don't wrap lines
-set tabstop=4                     " a tab is four spaces
-set shiftwidth=4                  " an autoindent (with <<) is two spaces
-set softtabstop=4                 " People like using real tab character instead of spaces because it makes it easier when pressing BACKSPACE or DELETE, since if the indent is using spaces it will take 4 keystrokes to delete the indent. Using this setting, however, makes VIM see multiple space characters as tabstops, and so <BS> does the right thing and will delete four spaces (assuming 4 is your setting).
-set expandtab                     " use spaces, not tabs
-set backspace=indent,eol,start    " backspace through everything in insert mode
-set autoindent                    " Very painful to live without this (especially with Python)! It means that when you press RETURN and a new line is created, the indent of the new line will match that of the previous line. 
-set smartindent                   " When searching try to be smart about cases
-let &colorcolumn=join(range(81,999),",")
+set nowrap                               " don't wrap lines
+set tabstop=4                            " a tab is four spaces
+set shiftwidth=4                         " an autoindent (with <<) is two spaces
+set softtabstop=4                        " People like using real tab character instead of spaces because it makes it easier when pressing BACKSPACE or DELETE, since if the indent is using spaces it will take 4 keystrokes to delete the indent. Using this setting, however, makes VIM see multiple space characters as tabstops, and so <BS> does the right thing and will delete four spaces (assuming 4 is your setting).
+set expandtab                            " use spaces, not tabs
+set backspace=indent,eol,start           " backspace through everything in insert mode
+set autoindent                           " Very painful to live without this (especially with Python)! It means that when you press RETURN and a new line is created, the indent of the new line will match that of the previous line. 
+set smartindent                          " When searching try to be smart about cases
+let &colorcolumn=join(range(81,999),",") " limit length of cursor line
 
 ""
 "" Searching
@@ -111,20 +118,6 @@ if has("autocmd")
     " see :help last-position-jump
     au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
                 \| exe "normal! g`\"" | endif
-endif
-
-""
-"" Status line
-""
-if has("statusline") && !&cp
-    set laststatus=2  " always show the status bar
-
-    " Start the status line
-    set statusline=%f\ %m\ %r
-    set statusline+=Line:%l/%L[%p%%]
-    set statusline+=Col:%v
-    set statusline+=Buf:#%n
-    set statusline+=[%b][0x%B]
 endif
 
 ""
