@@ -34,8 +34,8 @@ if has("gui_running")
     set guitablabel=%M\ %t
 endif
 
-set guifont=Bitstream\ Vera\ Sans\ Mono:h12
-""set guifont=Source\ Code\ Pro:h14
+""set guifont=Bitstream\ Vera\ Sans\ Mono:h12
+set guifont=Anonymice\ Powerline:h13
 syntax enable         " Turn on syntax highlighting allowing local overrides
 colorscheme solarized
 set background=dark
@@ -48,6 +48,14 @@ augroup CLNRSet
     autocmd! ColorScheme * hi CursorLineNR cterm=bold
 augroup END
 
+""
+"" vim-airline
+""
+set laststatus=2
+let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
 
 ""
 "" Whitespace
