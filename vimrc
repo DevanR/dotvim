@@ -55,12 +55,10 @@ set autoindent                    " Very painful to live without this (especiall
 set smartindent                   " When searching try to be smart about cases
 let &colorcolumn=join(range(81,999),",")
 
-
-
 ""
 "" Searching
 ""
-set showmatch  " Show matching brackets when text indicator is over them
+set showmatch   " Show matching brackets when text indicator is over them
 set hlsearch    " highlight matches
 set incsearch   " incremental searching
 set ignorecase  " searches are case insensitive...
@@ -152,6 +150,17 @@ nmap <leader>n :NERDTreeToggle<CR>                       " Toggle NERDTree
 nmap <leader>u :GundoToggle<CR>                          " Toggle Gundo
 
 ""
+"" Leave Ex Mode
+""
+nnoremap Q <nop>
+
+""
+"" GitGutter
+""
+let g:gitgutter_highlight_lines = 1 " Turns on line highlighting by default
+
+
+""
 "" Fugitive
 ""
 set previewheight=20
@@ -219,6 +228,4 @@ endfunction
 
 nmap <silent> <leader>m :call MarkWindowSwap()<CR>
 nmap <silent> <leader>sw :call DoWindowSwap()<CR>
-
-
 
