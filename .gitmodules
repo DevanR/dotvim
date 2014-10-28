@@ -23,5 +23,5 @@
 	path = bundle/YouCompleteMe
 	url = https://github.com/Valloric/YouCompleteMe.git
 [submodule "vim-airline"]
-	path = vim-airline
+	path = bundle/vim-airline
 	url = https://github.com/bling/vim-airline/
