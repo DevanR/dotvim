@@ -137,7 +137,7 @@ endif
 
 let mapleader = ";"
 
-inoremap jj <ESC>
+noremap jj <ESC>
 
 set mouse=a                                              " Mouse events
 map <ScrollWheelUp> <C-Y>
