@@ -31,8 +31,7 @@ if has("gui_running")
     set guitablabel=%M\ %t
 endif
 
-""set guifont=Bitstream\ Vera\ Sans\ Mono:h12
-set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h13
+set guifont=Bitstream\ Vera\ Sans\ Mono:h12
 syntax enable         " Turn on syntax highlighting allowing local overrides
 colorscheme solarized
 set background=dark
@@ -44,21 +43,6 @@ hi CursorLineNR cterm=bold
 augroup CLNRSet
     autocmd! ColorScheme * hi CursorLineNR cterm=bold
 augroup END
-
-""
-"" vim-airline
-""
-let g:Powerline_symbols = 'fancy'
-set laststatus=2
-let g:airline_powerline_fonts = 1
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-
-""
-"" YouCompleteMe
-""
-let g:ycm_autoclose_preview_window_after_completion=1
 
 ""
 "" Whitespace
@@ -134,7 +118,6 @@ endif
 ""
 "" Input Mappings
 ""
-
 let mapleader = ";"
 
 inoremap jj <ESC>
@@ -146,79 +129,8 @@ map <ScrollWheelDown> <C-E>
 nmap <leader>md :%!/usr/bin/Markdown.pl --html4tags <cr> " Markdown to HTML
 noremap <Leader>l :update<CR>                            " Quick save
 nmap <leader>t :TagbarToggle<CR>                         " Toggle Tagbar
-nmap <leader>gd :Gdiff<CR>                               " Fugitive diff
-nmap <leader>gs :Gstatus<CR>                             " Fugitive status
-nmap <leader>gc :Gcommit<CR>                             " Fugitive commit
-nmap <leader>gb :Gblame<CR>                              " Fugitive blame
-nmap <leader>n :NERDTreeToggle<CR>                       " Toggle NERDTree
-nmap <leader>u :GundoToggle<CR>                          " Toggle Gundo
 
-""
-"" vim-easymotion
-""
-map  / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
-map  n <Plug>(easymotion-next)
-map  N <Plug>(easymotion-prev)
-map <Leader>l <Plug>(easymotion-lineforward)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
-map <Leader>h <Plug>(easymotion-linebackward)
-let g:EasyMotion_smartcase = 1
-let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
-
-""
-"" Leave Ex Mode
-""
-nnoremap Q <nop>
-
-""
-"" GitGutter
-""
-let g:gitgutter_highlight_lines = 1 " Turns on line highlighting by default
-
-
-""
-"" Fugitive
-""
-set previewheight=20
-
-""
-"" Syntastic
-""
-let g:syntastic_cpp_compiler = 'g++'
-let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
-
-""
-"" vim-easymotion
-""
-map <Leader> <Plug>(easymotion-prefix)
-
-""
-"" Pymode
-""
-let g:pymode = 1
-let g:pymode_doc = 1
-let g:pymode_run = 1
-let g:pymode_lint = 1
-let g:pymode_rope = 0
-let g:pymode_motion =1
-let g:pymode_syntax = 1
-let g:pymode_options = 1
-let g:pymode_indent = 1
-let g:pymode_folding = 1
-let g:pymode_warnings = 1
-let g:pymode_doc_bind = 'K'
-let g:pymode_lint_sort = []
-let g:pymode_lint_message = 1
-let g:pymode_lint_on_write = 1
-let g:pymode_trim_whitespaces = 1
-let g:pymode_quickfix_minheight = 3
-let g:pymode_quickfix_maxheight = 6
-let g:pymode_rope_show_doc_bind = 'R'
-"let g:pymode_rope_goto_definition_bind = 'D'
-"let g:pymode_rope_organize_imports_bind = 'O'
-let g:pymode_lint_checkers = ['pyflakes', 'pep8']
+nnoremap Q <nop>                                         " Leave Ex Mode
 
 " "
 " " Swap windows
@@ -228,8 +140,6 @@ let g:pymode_lint_checkers = ['pyflakes', 'pep8']
 " " Type ;m
 " " Move to the window you want to swap
 " " Type ;sw
-
-
 function! MarkWindowSwap()
     let g:markedWinNum = winnr()
 endfunction
@@ -251,4 +161,56 @@ endfunction
 
 nmap <silent> <leader>m :call MarkWindowSwap()<CR>
 nmap <silent> <leader>sw :call DoWindowSwap()<CR>
+
+""
+"" Fugitive
+""
+nmap <leader>gd :Gdiff<CR>                               " Fugitive diff
+nmap <leader>gs :Gstatus<CR>                             " Fugitive status
+nmap <leader>gc :Gcommit<CR>                             " Fugitive commit
+nmap <leader>gb :Gblame<CR>                              " Fugitive blame
+set previewheight=20
+
+""
+"" NERD Tree
+""
+nmap <leader>n :NERDTreeToggle<CR>                       " Toggle NERDTree
+
+""
+"" GitGutter
+""
+let g:gitgutter_highlight_lines = 1 " Turns on line highlighting by default
+
+""
+"" Syntastic
+""
+let g:syntastic_cpp_compiler = 'g++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+
+""
+"" Pymode
+""
+let g:pymode = 1
+let g:pymode_doc = 1
+let g:pymode_run = 1
+let g:pymode_lint = 1
+let g:pymode_rope = 0
+let g:pymode_motion =1
+let g:pymode_syntax = 1
+let g:pymode_options = 1
+let g:pymode_indent = 1
+let g:pymode_folding = 1
+let g:pymode_warnings = 1
+let g:pymode_doc_bind = 'K'
+let g:pymode_lint_sort = []
+let g:pymode_lint_message = 1
+let g:pymode_lint_on_write = 1
+let g:pymode_trim_whitespaces = 1
+let g:pymode_max_line_length = 120
+let g:pymode_quickfix_minheight = 3
+let g:pymode_quickfix_maxheight = 6
+"let g:pymode_rope_show_doc_bind = 'R'
+"let g:pymode_rope_goto_definition_bind = 'D'
+"let g:pymode_rope_organize_imports_bind = 'O'
+let g:pymode_lint_checkers = ['pyflakes', 'pep8']
 
