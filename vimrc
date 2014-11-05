@@ -38,12 +38,6 @@ set background=dark
 set encoding=utf-8    " Set default encoding to UTF-8
 set fileencoding=utf-8
 
-"" Bold line number
-hi CursorLineNR cterm=bold
-augroup CLNRSet
-    autocmd! ColorScheme * hi CursorLineNR cterm=bold
-augroup END
-
 ""
 "" Whitespace
 ""
@@ -179,7 +173,7 @@ nmap <leader>n :NERDTreeToggle<CR>                       " Toggle NERDTree
 ""
 "" GitGutter
 ""
-let g:gitgutter_highlight_lines = 1 " Turns on line highlighting by default
+let g:gitgutter_highlight_lines = 0 " Turns off line highlighting by default
 
 ""
 "" Syntastic
