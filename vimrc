@@ -112,16 +112,12 @@ endif
 ""
 "" Input Mappings
 ""
-let mapleader = ";"
-
-noremap jj <ESC>
 
 set mouse=a                                              " Mouse events
 map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
 
 nmap <leader>md :%!/usr/bin/Markdown.pl --html4tags <cr> " Markdown to HTML
-noremap <Leader>l :update<CR>                            " Quick save
 nmap <leader>t :TagbarToggle<CR>                         " Toggle Tagbar
 
 nnoremap Q <nop>                                         " Leave Ex Mode
