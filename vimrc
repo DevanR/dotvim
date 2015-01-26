@@ -176,6 +176,14 @@ let g:gitgutter_highlight_lines = 0 " Turns off line highlighting by default
 ""
 let g:syntastic_cpp_compiler = 'g++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
+let g:syntastic_html_tidy_ignore_errors = [
+    \"trimming empty <i>",
+    \"trimming empty <span>",
+    \"<input> proprietary attribute \"autocomplete\"",
+    \"proprietary attribute \"role\"",
+    \"proprietary attribute \"hidden\"",
+    \]
 
 ""
 "" Pymode
