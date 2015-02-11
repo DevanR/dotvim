@@ -122,6 +122,29 @@ nmap <leader>t :TagbarToggle<CR>                         " Toggle Tagbar
 
 nnoremap Q <nop>                                         " Leave Ex Mode
 
+" Save keystrokes when accessing command
+nnoremap ; :
+
+map <up> <nop>                                           " Force usage of hjkl
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+
+nmap <silent> ,/ :nohlsearch<CR>                         " Clear search history
+
+cmap w!! w !sudo tee % >/dev/null                        " Force writing of sudo files with "w!!"
+
+set pastetoggle=<F2>                                     " Shortcut for pastemode
+
+" "
+" " Easy window navigation
+" "
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+
 " "
 " " Swap windows
 " "
