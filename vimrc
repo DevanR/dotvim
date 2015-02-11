@@ -113,6 +113,9 @@ endif
 "" Input Mappings
 ""
 
+" Change the mapleader from \ to 
+let mapleader="'"
+
 set mouse=a                                              " Mouse events
 map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
@@ -124,11 +127,6 @@ nnoremap Q <nop>                                         " Leave Ex Mode
 
 " Save keystrokes when accessing command
 nnoremap ; :
-
-map <up> <nop>                                           " Force usage of hjkl
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
 
 nmap <silent> ,/ :nohlsearch<CR>                         " Clear search history
 
