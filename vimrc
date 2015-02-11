@@ -114,7 +114,7 @@ endif
 ""
 
 " Change the mapleader from \ to 
-let mapleader="'"
+let mapleader=","
 
 set mouse=a                                              " Mouse events
 map <ScrollWheelUp> <C-Y>
