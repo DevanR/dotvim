@@ -142,7 +142,6 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
-
 " "
 " " Swap windows
 " "
@@ -174,25 +173,6 @@ nmap <silent> <leader>m :call MarkWindowSwap()<CR>
 nmap <silent> <leader>sw :call DoWindowSwap()<CR>
 
 ""
-"" Fugitive
-""
-nmap <leader>gd :Gdiff<CR>                               " Fugitive diff
-nmap <leader>gs :Gstatus<CR>                             " Fugitive status
-nmap <leader>gc :Gcommit<CR>                             " Fugitive commit
-nmap <leader>gb :Gblame<CR>                              " Fugitive blame
-set previewheight=20
-
-""
-"" NERD Tree
-""
-nmap <leader>n :NERDTreeToggle<CR>                       " Toggle NERDTree
-
-""
-"" GitGutter
-""
-let g:gitgutter_highlight_lines = 0 " Turns off line highlighting by default
-
-""
 "" Syntastic
 ""
 let g:syntastic_cpp_compiler = 'g++'
@@ -219,7 +199,7 @@ let g:pymode = 1
 let g:pymode_doc = 1
 let g:pymode_run = 1
 let g:pymode_lint = 1
-let g:pymode_rope = 0
+let g:pymode_rope = 1
 let g:pymode_motion =1
 let g:pymode_syntax = 1
 let g:pymode_options = 1
