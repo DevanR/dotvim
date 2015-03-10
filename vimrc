@@ -127,7 +127,7 @@ nnoremap Q <nop>                                         " Leave Ex Mode
 nmap <leader>e :Explore <cr>                             " Vim Explore mode
 nmap <leader>v :Vexplore <cr>                            " Vim Explore mode vertical split
 nmap <leader>s :Sexplore <cr>                            " Vim Explore mode horizontal split
-nmap <leader>s :Texplore <cr>                            " Vim Explore mode new tab
+nmap <leader>t :Texplore <cr>                            " Vim Explore mode new tab
 
 " Save keystrokes when accessing command
 nnoremap ; :
