@@ -114,16 +114,20 @@ endif
 ""
 
 " Change the mapleader from \ to 
-let mapleader=","
+let mapleader="'"
 
 set mouse=a                                              " Mouse events
 map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
 
 nmap <leader>md :%!/usr/bin/Markdown.pl --html4tags <cr> " Markdown to HTML
-nmap <leader>t :TagbarToggle<CR>                         " Toggle Tagbar
 
 nnoremap Q <nop>                                         " Leave Ex Mode
+
+nmap <leader>e :Explore <cr>                             " Vim Explore mode
+nmap <leader>v :Vexplore <cr>                            " Vim Explore mode vertical split
+nmap <leader>s :Sexplore <cr>                            " Vim Explore mode horizontal split
+nmap <leader>s :Texplore <cr>                            " Vim Explore mode new tab
 
 " Save keystrokes when accessing command
 nnoremap ; :
