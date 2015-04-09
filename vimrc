@@ -176,6 +176,25 @@ endfunction
 nmap <silent> <leader>m :call MarkWindowSwap()<CR>
 nmap <silent> <leader>sw :call DoWindowSwap()<CR>
 
+
+""
+"" CtrlP
+""
+let g:ctrlp_map = '<C-p>'
+
+""
+"" Gundo
+""
+nmap <leader>u :GundoToggle <cr>
+let g:gundo_width = 60
+let g:gundo_preview_height = 45
+let g:gundo_right = 1
+
+""
+"" TagBar
+""
+nmap <leader>c :TagbarToggle <cr>
+
 ""
 "" Syntastic
 ""

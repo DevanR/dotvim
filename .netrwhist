@@ -1,3 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =1
-let g:netrw_dirhist_1='/Users/dre09/.vim'
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/Users/dre09/Workspace/git-bskyb-com/local-bms/bms/intra_planning/management'
+let g:netrw_dirhist_2='/Users/dre09/Workspace/git-bskyb-com/local-bms/bms/intra_planning'
+let g:netrw_dirhist_3='/Users/dre09/Workspace/git-bskyb-com/local-bms/bms'
+let g:netrw_dirhist_4='/Users/dre09/Workspace/git-bskyb-com/local-bms/bms/gea_planning'
+let g:netrw_dirhist_5='/Users/dre09/Workspace/git-bskyb-com/local-bms/bms/gea_planning/management'
+let g:netrw_dirhist_6='/Users/dre09/Workspace/git-bskyb-com/local-bms/bms/gea_planning/management/commands'
+let g:netrw_dirhist_7='/Users/dre09/Workspace/git-bskyb-com/local-bms/bms/intra_planning/management/commands'
