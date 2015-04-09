@@ -13,3 +13,30 @@
 [submodule "tagbar"]
 	path = tagbar
 	url = https://github.com/majutsushi/tagbar
+[submodule "bundle/tagbar"]
+	path = bundle/tagbar
+	url = https://github.com/majutsushi/tagbar
+[submodule "bundle/gundo"]
+	path = bundle/gundo
+	url = https://github.com/sjl/gundo.vim
+[submodule "bundle/json-vim"]
+	path = bundle/json-vim
+	url = https://github.com/elzr/vim-json
+[submodule "bundle/angular-vim"]
+	path = bundle/angular-vim
+	url = https://github.com/burnettk/vim-angular
+[submodule "bundle/vim-markdown"]
+	path = bundle/vim-markdown
+	url = https://github.com/gabrielelana/vim-markdown
+[submodule "bundle/molokai"]
+	path = bundle/molokai
+	url = https://github.com/tomasr/molokai
+[submodule "bundle/vim-gitgutter"]
+	path = bundle/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter
+[submodule "bundle/emmet"]
+	path = bundle/emmet
+	url = https://github.com/mattn/emmet-vim
+[submodule "bundle/ctrlp"]
+	path = bundle/ctrlp
+	url = https://github.com/kien/ctrlp.vim
