@@ -217,6 +217,11 @@ let g:javascript_enable_domhtmlcss = 0
 let g:javascript_ignore_javaScriptdoc = 0
 
 ""
+"" vim-indent-line
+""
+let g:indentLine_char = '|'
+
+""
 "" Pymode
 ""
 let g:pymode = 1
