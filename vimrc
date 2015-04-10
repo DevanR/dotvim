@@ -220,6 +220,7 @@ let g:javascript_ignore_javaScriptdoc = 0
 "" vim-indent-line
 ""
 let g:indentLine_char = '|'
+let g:indentLine_color_term = '299'
 
 ""
 "" Pymode
