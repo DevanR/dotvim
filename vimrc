@@ -215,6 +215,7 @@ let g:syntastic_html_tidy_ignore_errors = [
 let g:javascript_fold = 1
 let g:javascript_enable_domhtmlcss = 0
 let g:javascript_ignore_javaScriptdoc = 0
+
 ""
 "" Pymode
 ""
