@@ -178,6 +178,11 @@ nmap <silent> <leader>sw :call DoWindowSwap()<CR>
 
 
 ""
+"" Python Formatting
+""
+nmap <leader>p :PymodeLintAuto <cr> \| gggqG
+
+""
 "" CtrlP
 ""
 let g:ctrlp_map = '<C-p>'
@@ -225,6 +230,8 @@ let g:indentLine_color_term = '299'
 ""
 "" Pymode
 ""
+
+au FileType python setlocal formatprg=autopep8\ -
 let g:pymode = 1
 let g:pymode_doc = 1
 let g:pymode_run = 1
