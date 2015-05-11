@@ -43,3 +43,15 @@
 [submodule "bundle/vim-indent-line"]
 	path = bundle/vim-indent-line
 	url = https://github.com/Yggdroot/indentLine
+[submodule "bundle/vim-javascript-syntax"]
+	path = bundle/vim-javascript-syntax
+	url = https://github.com/jelera/vim-javascript-syntax
+[submodule "bundle/javascript-indent"]
+	path = bundle/javascript-indent
+	url = https://github.com/vim-scripts/JavaScript-Indent
+[submodule "bundle/tern_for_vim"]
+	path = bundle/tern_for_vim
+	url = https://github.com/marijnh/tern_for_vim
+[submodule "bundle/jshint2"]
+	path = bundle/jshint2
+	url = https://github.com/Shutnik/jshint2.vim
