@@ -1,3 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_cnt =4
 let g:netrw_dirhist_1='/Users/dr/.vim'
+let g:netrw_dirhist_2='/Users/dr/Workspace/angular-seed'
+let g:netrw_dirhist_3='/Users/dr/Workspace/angular-seed/e2e-tests'
+let g:netrw_dirhist_4='/Users/dr/Workspace/js-assessment/app'
