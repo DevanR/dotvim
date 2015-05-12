@@ -32,10 +32,10 @@ if has("gui_running")
 endif
 
 set guifont=Bitstream\ Vera\ Sans\ Mono:h12
-syntax enable         " Turn on syntax highlighting allowing local overrides
+syntax on                                  " Turn on syntax highlighting allowing local overrides
 colorscheme solarized
 set background=dark
-set encoding=utf-8    " Set default encoding to UTF-8
+set encoding=utf-8                          " Set default encoding to UTF-8
 set fileencoding=utf-8
 
 ""
@@ -43,8 +43,8 @@ set fileencoding=utf-8
 ""
 set nowrap                               " don't wrap lines
 set tabstop=4                            " a tab is four spaces
-set shiftwidth=4                         " an autoindent (with <<) is two spaces
-set softtabstop=4                        " People like using real tab character instead of spaces because it makes it easier when pressing BACKSPACE or DELETE, since if the indent is using spaces it will take 4 keystrokes to delete the indent. Using this setting, however, makes VIM see multiple space characters as tabstops, and so <BS> does the right thing and will delete four spaces (assuming 4 is your setting).
+set shiftwidth=2                         " an autoindent (with <<) is two spaces
+set softtabstop=2                        " People like using real tab character instead of spaces because it makes it easier when pressing BACKSPACE or DELETE, since if the indent is using spaces it will take 4 keystrokes to delete the indent. Using this setting, however, makes VIM see multiple space characters as tabstops, and so <BS> does the right thing and will delete four spaces (assuming 4 is your setting).
 set expandtab                            " use spaces, not tabs
 set backspace=indent,eol,start           " backspace through everything in insert mode
 set autoindent                           " Very painful to live without this (especially with Python)! It means that when you press RETURN and a new line is created, the indent of the new line will match that of the previous line. 
@@ -218,14 +218,8 @@ let g:syntastic_html_tidy_ignore_errors = [
 "" vim-javascript
 ""
 let g:javascript_fold = 1
-let g:javascript_enable_domhtmlcss = 0
+let g:javascript_enable_domhtmlcss = 1
 let g:javascript_ignore_javaScriptdoc = 0
-
-""
-"" vim-indent-line
-""
-let g:indentLine_char = '|'
-let g:indentLine_color_term = '299'
 
 ""
 "" Pymode
@@ -233,7 +227,7 @@ let g:indentLine_color_term = '299'
 
 au FileType python setlocal formatprg=autopep8\ -
 let g:pymode = 1
-let g:pymode_doc = 1
+let g:pymode_doc = 0
 let g:pymode_run = 1
 let g:pymode_lint = 1
 let g:pymode_rope = 1
