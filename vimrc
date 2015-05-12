@@ -51,6 +51,10 @@ set autoindent                           " Very painful to live without this (es
 set smartindent                          " When searching try to be smart about cases
 let &colorcolumn=join(range(81,999),",") " limit length of cursor line
 
+autocmd FileType html setlocal shiftwidth=2 tabstop=2                   " html indentation
+autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4   " python indentation
+autocmd FileType javascript setlocal shiftwidth=4 tabstop=4             " javascript indentation
+
 ""
 "" Searching
 ""
