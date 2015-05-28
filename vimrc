@@ -197,6 +197,12 @@ let g:gundo_preview_height = 45
 let g:gundo_right = 1
 
 ""
+"" AutoFormat
+""
+nmap <leader>a :AutoFormat <cr>
+
+
+""
 "" Syntastic
 ""
 let g:syntastic_check_on_open=1
