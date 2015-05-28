@@ -199,6 +199,7 @@ let g:gundo_right = 1
 ""
 "" Syntastic
 ""
+let g:syntastic_check_on_open=1
 let g:syntastic_cpp_compiler = 'g++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
@@ -223,6 +224,15 @@ let g:javascript_ignore_javaScriptdoc = 0
 let g:used_javascript_libs = 'angularjs'
 
 ""
+"" JSHint2
+""
+nmap <leader>j :JSHint <cr>
+let jshint2_read = 1
+let jshint2_save = 1
+let jshint2_height = 3
+let jshint2_height = 12
+
+""
 "" Pymode
 ""
 
@@ -245,7 +255,7 @@ let g:pymode_lint_on_write = 1
 let g:pymode_trim_whitespaces = 1
 let g:pymode_lint_ignore = "E501"
 let g:pymode_quickfix_minheight = 3
-let g:pymode_quickfix_maxheight = 6
+let g:pymode_quickfix_maxheight = 12
 "let g:pymode_rope_show_doc_bind = 'R'
 "let g:pymode_rope_goto_definition_bind = 'D'
 "let g:pymode_rope_organize_imports_bind = 'O'
