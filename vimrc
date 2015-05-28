@@ -199,7 +199,7 @@ let g:gundo_right = 1
 ""
 "" AutoFormat
 ""
-nmap <leader>a :AutoFormat <cr>
+nmap <leader>a :Autoformat <cr>
 
 
 ""
