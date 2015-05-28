@@ -43,17 +43,17 @@ set fileencoding=utf-8
 ""
 set nowrap                               " don't wrap lines
 set tabstop=4                            " a tab is four spaces
-set shiftwidth=2                         " an autoindent (with <<) is two spaces
-set softtabstop=2                        " People like using real tab character instead of spaces because it makes it easier when pressing BACKSPACE or DELETE, since if the indent is using spaces it will take 4 keystrokes to delete the indent. Using this setting, however, makes VIM see multiple space characters as tabstops, and so <BS> does the right thing and will delete four spaces (assuming 4 is your setting).
+set shiftwidth=4                         " an autoindent (with <<) is two spaces
+set softtabstop=4                        " People like using real tab character instead of spaces because it makes it easier when pressing BACKSPACE or DELETE, since if the indent is using spaces it will take 4 keystrokes to delete the indent. Using this setting, however, makes VIM see multiple space characters as tabstops, and so <BS> does the right thing and will delete four spaces (assuming 4 is your setting).
 set expandtab                            " use spaces, not tabs
 set backspace=indent,eol,start           " backspace through everything in insert mode
 set autoindent                           " Very painful to live without this (especially with Python)! It means that when you press RETURN and a new line is created, the indent of the new line will match that of the previous line. 
 set smartindent                          " When searching try to be smart about cases
 let &colorcolumn=join(range(81,999),",") " limit length of cursor line
 
-autocmd FileType html setlocal shiftwidth=2 tabstop=2                   " html indentation
-autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4   " python indentation
-autocmd FileType javascript setlocal shiftwidth=4 tabstop=4             " javascript indentation
+"autocmd FileType html setlocal shiftwidth=2 tabstop=2                   " html indentation
+"autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4   " python indentation
+"autocmd FileType javascript setlocal shiftwidth=4 tabstop=4             " javascript indentation
 
 ""
 "" Searching
@@ -71,10 +71,7 @@ set foldmethod=syntax
 set foldlevelstart=1
 
 let javaScript_fold=1         " JavaScript
-let perl_fold=1               " Perl
-let php_folding=1             " PHP
 let r_syntax_folding=1        " R
-let ruby_fold=1               " Ruby
 let sh_fold_enabled=1         " sh
 let vimsyn_folding='af'       " Vim script
 let xml_syntax_folding=1      " XML
@@ -200,11 +197,6 @@ let g:gundo_preview_height = 45
 let g:gundo_right = 1
 
 ""
-"" TagBar
-""
-nmap <leader>c :TagbarToggle <cr>
-
-""
 "" Syntastic
 ""
 let g:syntastic_cpp_compiler = 'g++'
@@ -239,23 +231,22 @@ let g:pymode = 1
 let g:pymode_doc = 0
 let g:pymode_run = 1
 let g:pymode_lint = 1
-let g:pymode_rope = 1
-let g:pymode_motion =1
+let g:pymode_rope = 0
+let g:pymode_motion = 0
 let g:pymode_syntax = 1
-let g:pymode_options = 1
+let g:pymode_options = 0
 let g:pymode_indent = 1
 let g:pymode_folding = 1
 let g:pymode_warnings = 1
 let g:pymode_doc_bind = 'K'
-let g:pymode_lint_sort = []
+"let g:pymode_lint_sort = []
 let g:pymode_lint_message = 1
 let g:pymode_lint_on_write = 1
 let g:pymode_trim_whitespaces = 1
-let g:pymode_max_line_length = 120
+let g:pymode_lint_ignore = "E501"
 let g:pymode_quickfix_minheight = 3
 let g:pymode_quickfix_maxheight = 6
 "let g:pymode_rope_show_doc_bind = 'R'
 "let g:pymode_rope_goto_definition_bind = 'D'
 "let g:pymode_rope_organize_imports_bind = 'O'
-let g:pymode_lint_checkers = ['pyflakes', 'pep8']
-
+let g:pymode_lint_checkers = ['pylint', 'pep8']
