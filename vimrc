@@ -167,6 +167,9 @@ nmap <leader>v :Vexplore <cr>                            " Vim Explore mode vert
 nmap <leader>s :Sexplore <cr>                            " Vim Explore mode horizontal split
 nmap <leader>t :Texplore <cr>                            " Vim Explore mode new tab
 
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cmap w!! w !sudo tee > /dev/null %
+
 " Save keystrokes when accessing command
 nnoremap ; :
 
