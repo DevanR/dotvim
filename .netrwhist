@@ -1,9 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/Users/dre09/Workspace/git-bskyb-com/local-bms/bms/intra_upgrade'
-let g:netrw_dirhist_2='/Users/dre09/Workspace/git-bskyb-com/local-bms/bms'
-let g:netrw_dirhist_3='/Users/dre09/Workspace/git-bskyb-com/local-bms/bms/intra_upgrade'
-let g:netrw_dirhist_4='/Users/dre09/Workspace/git-bskyb-com/local-bms/bms'
-let g:netrw_dirhist_5='/Users/dre09/Workspace/git-bskyb-com/local-bms/bms/intra_upgrade'
-let g:netrw_dirhist_6='/Users/dre09/Workspace/git-bskyb-com/ansible-playbooks/bms/vagrant/.vagrant/provisioners/ansible/inventory'
-let g:netrw_dirhist_7='/Users/dre09/Workspace/git-bskyb-com/ansible-playbooks/bms/.vagrant/machines/default/virtualbox'
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/var'
+let g:netrw_dirhist_2='/var/yp'
+let g:netrw_dirhist_3='/var'
+let g:netrw_dirhist_4='/'
