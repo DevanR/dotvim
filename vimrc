@@ -159,6 +159,14 @@ endfunction
 command! RemoveFancyCharacters :call RemoveFancyCharacters()
 
 ""
+"" Bite the bullet
+""
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+
+""
 "" Searching
 ""
 set showmatch
