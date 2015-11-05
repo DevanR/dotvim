@@ -1,29 +1,98 @@
-" Pathogen
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+autocmd!
 
-""
-"" Basic Setup
-""
-set nocompatible      " Use vim, no vi defaults
-set number
-set ruler             " Show line and column number
-set spell
-set backspace=indent,eol,start
+call pathogen#incubate()
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" BASIC EDITING CONFIGURATION
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set nocompatible
+set history=10000
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set autoindent
+set laststatus=2
+set showmatch
+set incsearch
+set hlsearch
+set ignorecase smartcase
 set cursorline
+set cmdheight=1
+set switchbuf=useopen
+set showtabline=2
+set winwidth=79
+" Prevent Vim from clobbering the scrollback buffer. See
+" http://www.shallowsky.com/linux/noaltscreen.html
+set t_ti= t_te=
+set scrolloff=3
+set nobackup
+set nowritebackup
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set backspace=indent,eol,start
+set showcmd
+syntax on
+filetype plugin indent on
+set wildmenu
+let mapleader=","
+:set timeout timeoutlen=1000 ttimeoutlen=100
+" Normally, Vim messes with iskeyword when you open a shell file. This can
+" leak out, polluting other file types even after a 'set ft=' change. This
+" variable prevents the iskeyword change so it can't hurt anyone.
+let g:sh_noisk=1
+" Modelines (comments that set vim options on a per-file basis)
+set modeline
+set modelines=3
+set nojoinspaces
+set autoread
+set number
+set spell
 
-""
-"" Backups
-""
-set history=1000                            "store a large command history. Search using q:
-set nobackup                                " Dont store pointless backup files                                                                 
-set nowritebackup                           " See :help backup                                                              
-set swapfile                                " Do use the swap file though incase of crash                                                              
-set dir=~/.vim/swap//,/var/tmp//,/tmp//,.   " save swap files in one convenient location
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CUSTOM AUTOCMDS
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+augroup vimrcEx
+  " Clear all autocmds in the group
+  autocmd!
+  autocmd FileType text setlocal textwidth=78
+  " Jump to last cursor position unless it's invalid or in an event handler
+  autocmd BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal g`\"" |
+    \ endif
 
-""
-"" UI
-""
+  "for ruby, autoindent with two spaces, always expand tabs
+  autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
+  autocmd FileType python set sw=4 sts=4 et
+
+  autocmd! BufRead,BufNewFile *.sass setfiletype sass 
+
+  autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:&gt;
+  autocmd BufRead *.markdown  set ai formatoptions=tcroqn2 comments=n:&gt;
+
+  " Indent p tags
+  " autocmd FileType html,eruby if g:html_indent_tags !~ '\\|p\>' | let g:html_indent_tags .= '\|p\|li\|dt\|dd' | endif
+
+  " Don't syntax highlight markdown because it's often wrong
+  autocmd! FileType mkd setlocal syn=off
+
+  " Leave the return key alone when in command line windows, since it's used
+  " to run commands there.
+  autocmd! CmdwinEnter * :unmap <cr>
+  autocmd! CmdwinLeave * :call MapCR()
+
+  " *.md is markdown
+  autocmd! BufNewFile,BufRead *.md setlocal ft=
+
+  " indent slim two spaces, not four
+  autocmd! FileType *.slim set sw=2 sts=2 et
+augroup END
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" UI
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("gui_running")
     set guioptions-=T
     set guioptions+=e
@@ -32,86 +101,76 @@ if has("gui_running")
 endif
 
 set guifont=Bitstream\ Vera\ Sans\ Mono:h12
-syntax on                                  " Turn on syntax highlighting allowing local overrides
 colorscheme solarized
 set background=dark
-set encoding=utf-8                          " Set default encoding to UTF-8
+set encoding=utf-8
 set fileencoding=utf-8
+:set t_Co=256 " 256 colors
+:color grb256
 
-""
-"" Whitespace
-""
-set nowrap                               " don't wrap lines
-set tabstop=4                            " a tab is four spaces
-set shiftwidth=4                         " an autoindent (with <<) is two spaces
-set softtabstop=4                        " People like using real tab character instead of spaces because it makes it easier when pressing BACKSPACE or DELETE, since if the indent is using spaces it will take 4 keystrokes to delete the indent. Using this setting, however, makes VIM see multiple space characters as tabstops, and so <BS> does the right thing and will delete four spaces (assuming 4 is your setting).
-set expandtab                            " use spaces, not tabs
-set backspace=indent,eol,start           " backspace through everything in insert mode
-set autoindent                           " Very painful to live without this (especially with Python)! It means that when you press RETURN and a new line is created, the indent of the new line will match that of the previous line. 
-set smartindent                          " When searching try to be smart about cases
-let &colorcolumn=join(range(81,999),",") " limit length of cursor line
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" STATUS LINE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+:set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
 
-""
-"" Indent Python in the Google way.
-""
-
-setlocal indentexpr=GetGooglePythonIndent(v:lnum)
-
-let s:maxoff = 50 " maximum number of lines to look backwards.
-
-function GetGooglePythonIndent(lnum)
-  " Indent inside parens.
-  " Align with the open paren unless it is at the end of the line.
-  " E.g.
-  "   open_paren_not_at_EOL(100,
-  "                         (200,
-  "                          300),
-  "                         400)
-  "   open_paren_at_EOL(
-  "       100, 200, 300, 400)
-  call cursor(a:lnum, 1)
-  let [par_line, par_col] = searchpairpos('(\|{\|\[', '', ')\|}\|\]', 'bW',
-        \ "line('.') < " . (a:lnum - s:maxoff) . " ? dummy :"
-        \ . " synIDattr(synID(line('.'), col('.'), 1), 'name')"
-        \ . " =~ '\\(Comment\\|String\\)$'")
-  echo par_line par_col
-  if par_line > 0
-    call cursor(par_line, 1)
-    if par_col != col("$") - 1
-      return par_col
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MULTIPURPOSE TAB KEY
+" Indent if we're at the beginning of a line. Else, do completion.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
     else
-      return indent(par_line) + &sw " FIXED HERE. FIXED BY ADDING THIS LINE
+        return "\<c-p>"
     endif
-  endif
-
-  " Delegate the rest to the original function.
-  return GetPythonIndent(a:lnum)
 endfunction
+inoremap <expr> <tab> InsertTabWrapper()
+inoremap <s-tab> <c-n>
 
-let pyindent_nested_paren="&sw*2"
-let pyindent_open_paren="&sw*2"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" InsertTime COMMAND
+" Insert the current time
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+command! InsertTime :normal a<c-r>=strftime('%F %H:%M:%S.0 %z')<cr>
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Diff tab management: open the current git diff in a tab
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+command! GdiffInTab tabedit %|vsplit|Gdiff
+nnoremap <leader>d :GdiffInTab<cr>
+nnoremap <leader>D :tabclose<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" RemoveFancyCharacters COMMAND
+" Remove smart quotes, etc.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! RemoveFancyCharacters()
+    let typo = {}
+    let typo["“"] = '"'
+    let typo["”"] = '"'
+    let typo["‘"] = "'"
+    let typo["’"] = "'"
+    let typo["–"] = '--'
+    let typo["—"] = '---'
+    let typo["…"] = '...'
+    :exe ":%s/".join(keys(typo), '\|').'/\=typo[submatch(0)]/ge'
+endfunction
+command! RemoveFancyCharacters :call RemoveFancyCharacters()
 
 ""
 "" Searching
 ""
-set showmatch   " Show matching brackets when text indicator is over them
-set hlsearch    " highlight matches
-set incsearch   " incremental searching
-set ignorecase  " searches are case insensitive...
-set smartcase   " ... unless they contain at least one capital letter
+set showmatch
+set incsearch
+set hlsearch
+set ignorecase smartcase
 
 ""
 "" Folding
 ""
-set foldmethod=syntax
-set foldlevelstart=1
-
-let javaScript_fold=1         " JavaScript
-let r_syntax_folding=1        " R
-let sh_fold_enabled=1         " sh
-let vimsyn_folding='af'       " Vim script
-let xml_syntax_folding=1      " XML
+set foldmethod=manual
+set nofoldenable
 
 ""
 "" Sound
@@ -124,35 +183,16 @@ set novisualbell
 set tm=500
 
 ""
-"" File types
-""
-filetype on     " Turn on filetype plugins (:help filetype-plugin)
-filetype indent on 
-filetype plugin on
-
-if has("autocmd")
-    " In Makefiles, use real tabs, not tabs expanded to spaces
-    au FileType make setlocal noexpandtab
-
-    " Make sure all markdown files have the correct filetype set and setup wrapping
-    au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} setf markdown
-    au FileType markdown call s:setupWrapping()
-
-    " Treat JSON files like JavaScript
-    au BufNewFile,BufRead *.json set ft=javascript
-
-    " Remember last location in file, but not for commit messages.
-    " see :help last-position-jump
-    au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
-                \| exe "normal! g`\"" | endif
-endif
-
-""
 "" Input Mappings
 ""
-
 " Change the mapleader from \ to 
 let mapleader="'"
+
+" Align selected lines
+vnoremap <leader>ib :!align<cr>
+
+" Insert a hash rocket with <c-l>
+imap <c-l> <space>=><space>
 
 set mouse=a                                              " Mouse events
 map <ScrollWheelUp> <C-Y>
@@ -241,7 +281,6 @@ let g:gundo_right = 1
 ""
 nmap <leader>a :Autoformat <cr>
 
-
 ""
 "" Syntastic
 ""
@@ -258,18 +297,6 @@ let g:syntastic_html_tidy_ignore_errors = [
     \]
 
 ""
-"" vim-javascript
-""
-let g:javascript_fold = 1
-let g:javascript_enable_domhtmlcss = 1
-let g:javascript_ignore_javaScriptdoc = 0
-
-""
-"" vim-javascript-libraries
-""
-let g:used_javascript_libs = 'angularjs'
-
-""
 "" JSHint2
 ""
 nmap <leader>j :JSHint <cr>
@@ -281,7 +308,6 @@ let jshint2_height = 12
 ""
 "" Pymode
 ""
-
 au FileType python setlocal formatprg=autopep8\ -
 let g:pymode = 1
 let g:pymode_doc = 0
