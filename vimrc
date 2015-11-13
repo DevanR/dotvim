@@ -49,6 +49,7 @@ set nojoinspaces
 set autoread
 set number
 set spell
+set fileformat=dos
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM AUTOCMDS
