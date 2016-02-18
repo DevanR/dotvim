@@ -7,9 +7,6 @@
 [submodule "bundle/python-mode"]
 	path = bundle/python-mode
 	url = https://github.com/klen/python-mode.git
-[submodule "bundle/vim-javascript"]
-	path = bundle/vim-javascript
-	url = https://github.com/pangloss/vim-javascript.git
 [submodule "bundle/gundo"]
 	path = bundle/gundo
 	url = https://github.com/sjl/gundo.vim
@@ -34,21 +31,9 @@
 [submodule "bundle/vim-fugitive"]
 	path = bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive
-[submodule "bundle/vim-javascript-syntax"]
-	path = bundle/vim-javascript-syntax
-	url = https://github.com/jelera/vim-javascript-syntax
-[submodule "bundle/javascript-indent"]
-	path = bundle/javascript-indent
-	url = https://github.com/vim-scripts/JavaScript-Indent
 [submodule "bundle/tern_for_vim"]
 	path = bundle/tern_for_vim
 	url = https://github.com/marijnh/tern_for_vim
-[submodule "bundle/jshint2"]
-	path = bundle/jshint2
-	url = https://github.com/Shutnik/jshint2.vim
-[submodule "bundle/javascript-libraries-vim"]
-	path = bundle/javascript-libraries-vim
-	url = https://github.com/othree/javascript-libraries-syntax.vim
 [submodule "bundle/vim-autoformat"]
 	path = bundle/vim-autoformat
 	url = https://github.com/Chiel92/vim-autoformat

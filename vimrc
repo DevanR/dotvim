@@ -303,15 +303,8 @@ let g:syntastic_html_tidy_ignore_errors = [
     \"proprietary attribute \"role\"",
     \"proprietary attribute \"hidden\"",
     \]
+let g:syntastic_javascript_checkers = ['eslint']
 
-""
-"" JSHint2
-""
-nmap <leader>j :JSHint <cr>
-let jshint2_read = 1
-let jshint2_save = 1
-let jshint2_height = 3
-let jshint2_height = 12
 
 ""
 "" Pymode
@@ -319,7 +312,7 @@ let jshint2_height = 12
 au FileType python setlocal formatprg=autopep8\ -
 let g:pymode = 1
 let g:pymode_doc = 0
-let g:pymode_run = 1
+let g:pymode_run = 0
 let g:pymode_lint = 1
 let g:pymode_rope = 0
 let g:pymode_motion = 0
