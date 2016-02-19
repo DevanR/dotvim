@@ -121,7 +121,7 @@ set fileencoding=utf-8
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " STATUS LINE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-:set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
+:set statusline=%<%f\ (%{&ft}[Ma[Ma)\ %-4(%m%)%=%-19(%3l,%02c%03V%)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MULTIPURPOSE TAB KEY
@@ -298,7 +298,7 @@ let g:gundo_right = 1
 ""
 "" AutoFormat
 ""
-nmap <leader>a :Autoformat <cr>
+nmap <leader>a :Autoformat <CR>
 
 ""
 "" Syntastic
@@ -331,13 +331,13 @@ let g:pymode_syntax = 1
 let g:pymode_options = 0
 let g:pymode_indent = 1
 let g:pymode_folding = 1
-let g:pymode_warnings = 1
+let g:pymode_warnings = 0
 let g:pymode_doc_bind = 'K'
 "let g:pymode_lint_sort = []
 let g:pymode_lint_message = 1
 let g:pymode_lint_on_write = 1
 let g:pymode_trim_whitespaces = 1
-let g:pymode_lint_ignore = "E501"
+let g:pymode_lint_ignore = "F0401,C0111,C0301,E501,E265"
 let g:pymode_quickfix_minheight = 3
 let g:pymode_quickfix_maxheight = 12
 "let g:pymode_rope_show_doc_bind = 'R'
