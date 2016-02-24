@@ -116,7 +116,8 @@ colorscheme solarized
 set background=dark
 set encoding=utf-8
 set fileencoding=utf-8
-:set t_Co=256 " 256 colors
+set t_Co=256 " 256 colors
+highlight CursorLineNR ctermbg=235 ctermfg=white
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " STATUS LINE
