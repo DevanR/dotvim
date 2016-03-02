@@ -131,7 +131,7 @@ highlight CursorLineNR ctermbg=235 ctermfg=white
 function! InsertTabWrapper()
     let col = col('.') - 1
     if !col || getline('.')[col - 1] !~ '\k'
-        return "\<tab>"
+        return "    "
     else
         return "\<c-p>"
     endif
@@ -188,7 +188,7 @@ set ignorecase smartcase
 ""
 "" Folding
 ""
-set foldmethod=manual
+set foldmethod=syntax
 set nofoldenable
 
 ""
@@ -204,7 +204,7 @@ set tm=500
 ""
 "" Input Mappings
 ""
-" Change the mapleader from \ to 
+" Change the mapleader from \ to '
 let mapleader="'"
 
 " Align selected lines
