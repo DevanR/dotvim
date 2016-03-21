@@ -1,11 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='/Users/dre09/Workspace/git-bskyb-com/bms/templates/rest_framework'
-let g:netrw_dirhist_2='/private/etc/ansible'
-let g:netrw_dirhist_3='/Users/dre09/Workspace/git-bskyb-com/bms/report/tests'
-let g:netrw_dirhist_4='/Users/dre09/Workspace/git-bskyb-com/bms/utils'
-let g:netrw_dirhist_5='/Users/dre09/Workspace/git-bskyb-com/bms/docs/source'
-let g:netrw_dirhist_6='/Users/dre09/Workspace/git-bskyb-com/bms/wholesale/templates'
-let g:netrw_dirhist_7='/Users/dre09/.vim/bundle'
-let g:netrw_dirhist_8='/Users/dre09/.vim/bundle/command-t/ruby/command-t'
-let g:netrw_dirhist_9='/Users/dre09/.vim'
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/Users/dre09/Workspace/git-bskyb-com/bms/wholesale'
+let g:netrw_dirhist_2='/Users/dre09/Workspace/git-bskyb-com/bms'
+let g:netrw_dirhist_3='/Users/dre09/Workspace/git-bskyb-com/bms/wholesale'
