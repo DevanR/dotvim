@@ -224,19 +224,15 @@ map <C-l> <C-w>l
 nmap <leader>p :PymodeLintAuto <cr> \| gggqG
 
 ""
-"" CtrlP
-""
-let g:ctrlp_map = '<C-p>'
-" bind K to grep word under cursor
-nnoremap S :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-
-""
 "" Gundo
 ""
 nmap <leader>u :GundoToggle <cr>
 let g:gundo_width = 60
 let g:gundo_preview_height = 45
 let g:gundo_right = 1
+
+
+nmap <leader>f :CommandT <cr>
 
 ""
 "" AutoFormat
