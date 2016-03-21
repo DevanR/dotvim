@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/Users/dre09/Workspace/git-bskyb-com/bms/templates/rest_framework'
+let g:netrw_dirhist_2='/private/etc/ansible'
+let g:netrw_dirhist_3='/Users/dre09/Workspace/git-bskyb-com/bms/report/tests'
+let g:netrw_dirhist_4='/Users/dre09/Workspace/git-bskyb-com/bms/utils'
+let g:netrw_dirhist_5='/Users/dre09/Workspace/git-bskyb-com/bms/docs/source'
+let g:netrw_dirhist_6='/Users/dre09/Workspace/git-bskyb-com/bms/wholesale/templates'

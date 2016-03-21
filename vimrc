@@ -35,7 +35,6 @@ set showcmd
 syntax on
 filetype plugin indent on
 set wildmenu
-let mapleader=","
 :set timeout timeoutlen=1000 ttimeoutlen=100
 " Normally, Vim messes with iskeyword when you open a shell file. This can
 " leak out, polluting other file types even after a 'set ft=' change. This
@@ -213,7 +212,6 @@ vnoremap <leader>ib :!align<cr>
 " Insert a hash rocket with <c-l>
 imap <c-l> <space>=><space>
 
-
 set mouse=a                                              " Mouse events
 map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
@@ -234,8 +232,6 @@ cmap w!! w !sudo tee > /dev/null %
 nnoremap ; :
 
 nmap <silent> ,/ :nohlsearch<CR>                         " Clear search history
-
-cmap w!! w !sudo tee % >/dev/null                        " Force writing of sudo files with "w!!"
 
 set pastetoggle=<F2>                                     " Shortcut for pastemode
 
