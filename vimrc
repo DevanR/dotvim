@@ -6,6 +6,9 @@ call pathogen#incubate()
 " BASIC EDITING CONFIGURATION
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible
+" allow unsaved background buffers and remember marks/undo for them
+" set hidden
+" " remember more commands and search history
 set history=10000
 set expandtab
 set tabstop=4
@@ -16,12 +19,16 @@ set laststatus=2
 set showmatch
 set incsearch
 set hlsearch
+" make searches case-sensitive only if they contain upper-case characters
 set ignorecase smartcase
+" highlight current line
 set cursorline
 set cmdheight=1
 set switchbuf=useopen
 set showtabline=2
 set winwidth=79
+" This makes RVM work inside Vim. I have no idea why.
+set shell=bash
 " Prevent Vim from clobbering the scrollback buffer. See
 " http://www.shallowsky.com/linux/noaltscreen.html
 set t_ti= t_te=
@@ -32,9 +39,16 @@ set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set backspace=indent,eol,start
 set showcmd
+" Enable highlighting for syntax
 syntax on
+" Enable file type detection.
+" Use the default filetype settings, so that mail gets 'tw' set to 72,
+" 'cindent' is on in C files, etc.
 filetype plugin indent on
-set wildmenu
+" use emacs-style tab completion when selecting files, etc
+set wildmode=longest,list
+let mapleader="'"
+" Fix slow O inserts
 :set timeout timeoutlen=1000 ttimeoutlen=100
 " Normally, Vim messes with iskeyword when you open a shell file. This can
 " leak out, polluting other file types even after a 'set ft=' change. This
@@ -43,23 +57,19 @@ let g:sh_noisk=1
 " Modelines (comments that set vim options on a per-file basis)
 set modeline
 set modelines=3
+
+" Insert only one space when joining lines that contain sentence-terminating
+" punctuation like `.`.
 set nojoinspaces
+" If a file is changed outside of vim, automatically reload it without asking
 set autoread
 set number
 set spell
-set fileformat=dos
+" Have Vim clear terminal on exit
 au VimLeave * :!clear
-
-set tabstop=4       " The width of a TAB is set to 4.
-                    " Still it is a \t. It is just that
-                    " Vim will interpret it to be having
-                    " a width of 4.
-
-set shiftwidth=4    " Indents will have a width of 4
-
-set softtabstop=4   " Sets the number of columns for a TAB
-
-set expandtab       " Expand TABs to spaces
+set foldmethod=syntax
+set nofoldenable
+set paste
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM AUTOCMDS
@@ -73,43 +83,18 @@ augroup vimrcEx
     \ if line("'\"") > 0 && line("'\"") <= line("$") |
     \   exe "normal g`\"" |
     \ endif
-
-  "for ruby, autoindent with two spaces, always expand tabs
-  autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
-
-  autocmd! BufRead,BufNewFile *.sass setfiletype sass 
-
-  autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:&gt;
-  autocmd BufRead *.markdown  set ai formatoptions=tcroqn2 comments=n:&gt;
-
-  " Indent p tags
-  autocmd FileType html,eruby if g:html_indent_tags !~ '\\|p\>' | let g:html_indent_tags .= '\|p\|li\|dt\|dd' | endif
-
-  " Don't syntax highlight markdown because it's often wrong
-  autocmd! FileType mkd setlocal syn=off
-
-  " Leave the return key alone when in command line windows, since it's used
-  " to run commands there.
-  autocmd! CmdwinEnter * :unmap <cr>
-  autocmd! CmdwinLeave * :call MapCR()
-
-  " *.md is markdown
-  autocmd! BufNewFile,BufRead *.md setlocal ft=
-
-  " indent slim two spaces, not four
-  autocmd! FileType *.slim set sw=2 sts=2 et
 augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" UI
+" COLOR
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("gui_running")
-    set guioptions-=T
-    set guioptions+=e
-    set t_Co=256
-    set guitablabel=%M\ %t
-endif
-
+-    set guioptions-=T
+-    set guioptions+=e
+-    set t_Co=256
+-    set guitablabel=%M\ %t
+-endif
+-
 set guifont=Bitstream\ Vera\ Sans\ Mono:h12
 colorscheme solarized
 set background=dark
@@ -121,7 +106,36 @@ highlight CursorLineNR ctermbg=235 ctermfg=white
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " STATUS LINE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-:set statusline=%<%f\ (%{&ft}[Ma[Ma)\ %-4(%m%)%=%-19(%3l,%02c%03V%)
+:set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MISC KEY MAPS
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <leader>y "*y
+" Move around splits with <c-hjkl>
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+" Insert a hash rocket with <c-l>
+imap <c-l> <space>=><space>
+" Can't be bothered to understand ESC vs <c-c> in insert mode
+imap <c-c> <esc>
+nnoremap <leader><leader> <c-^>
+" Close all other windows, open a vertical split, and open this file's test
+" alternate in it.
+nnoremap <leader>s :call FocusOnFile()<cr>
+function! FocusOnFile()
+	tabnew %
+ 	normalv
+	normall
+	call OpenTestAlternate()
+	normalh
+endfunction
+" Reload in chrome
+map <leader>l :w\|:silent !reload-chrome<cr>
+" Align selected lines
+vnoremap <leader>ib :!align<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MULTIPURPOSE TAB KEY
@@ -130,7 +144,7 @@ highlight CursorLineNR ctermbg=235 ctermfg=white
 function! InsertTabWrapper()
     let col = col('.') - 1
     if !col || getline('.')[col - 1] !~ '\k'
-        return "    "
+        return "\<tab>"
     else
         return "\<c-p>"
     endif
@@ -139,60 +153,38 @@ inoremap <expr> <tab> InsertTabWrapper()
 inoremap <s-tab> <c-n>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" OPEN FILES IN DIRECTORY OF CURRENT FILE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+cnoremap <expr> %% expand('%:h').'/'
+map <leader>e :edit %%
+map <leader>v :view %%
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " InsertTime COMMAND
 " Insert the current time
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 command! InsertTime :normal a<c-r>=strftime('%F %H:%M:%S.0 %z')<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Diff tab management: open the current git diff in a tab
+" UI
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-command! GdiffInTab tabedit %|vsplit|Gdiff
-nnoremap <leader>d :GdiffInTab<cr>
-nnoremap <leader>D :tabclose<cr>
+nnoremap Q <nop>                                         " Leave Ex Mode
+nmap <leader>e :Explore <cr>                             " Vim Explore mode
+nmap <leader>v :Vexplore <cr>                            " Vim Explore mode vertical split
+nmap <leader>s :Sexplore <cr>                            " Vim Explore mode horizontal split
+nmap <leader>t :Texplore <cr>                            " Vim Explore mode new tab
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" RemoveFancyCharacters COMMAND
-" Remove smart quotes, etc.
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! RemoveFancyCharacters()
-    let typo = {}
-    let typo["“"] = '"'
-    let typo["”"] = '"'
-    let typo["‘"] = "'"
-    let typo["’"] = "'"
-    let typo["–"] = '--'
-    let typo["—"] = '---'
-    let typo["…"] = '...'
-    :exe ":%s/".join(keys(typo), '\|').'/\=typo[submatch(0)]/ge'
-endfunction
-command! RemoveFancyCharacters :call RemoveFancyCharacters()
-
-""
 "" Bite the bullet
-""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 
-""
-"" Searching
-""
-set showmatch
-set incsearch
-set hlsearch
-set ignorecase smartcase
-
-""
-"" Folding
-""
-set foldmethod=syntax
-set nofoldenable
-
-""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Sound
-""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set noerrorbells visualbell t_vb=
 if has('autocmd')
   autocmd GUIEnter * set visualbell t_vb=
@@ -201,29 +193,12 @@ set novisualbell
 set tm=500
 
 ""
-"" Input Mappings
+"" Mouse
 ""
-" Change the mapleader from \ to '
-let mapleader="'"
-
-" Align selected lines
-vnoremap <leader>ib :!align<cr>
-
-" Insert a hash rocket with <c-l>
-imap <c-l> <space>=><space>
-
 set mouse=a                                              " Mouse events
 map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
 
-nmap <leader>md :%!/usr/bin/Markdown.pl --html4tags <cr> " Markdown to HTML
-
-nnoremap Q <nop>                                         " Leave Ex Mode
-
-nmap <leader>e :Explore <cr>                             " Vim Explore mode
-nmap <leader>v :Vexplore <cr>                            " Vim Explore mode vertical split
-nmap <leader>s :Sexplore <cr>                            " Vim Explore mode horizontal split
-nmap <leader>t :Texplore <cr>                            " Vim Explore mode new tab
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
@@ -243,37 +218,6 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
-" "
-" " Swap windows
-" "
-" " Instructions
-" " Move to the window to mark for the swap via ctrl-w movement
-" " Type ;m
-" " Move to the window you want to swap
-" " Type ;sw
-function! MarkWindowSwap()
-    let g:markedWinNum = winnr()
-endfunction
-
-function! DoWindowSwap()
-    "Mark destination
-    let curNum = winnr()
-    let curBuf = bufnr( "%" )
-    exe g:markedWinNum . "wincmd w"
-    "Switch to source and shuffle dest->source
-    let markedBuf = bufnr( "%" )
-    "Hide and open so that we aren't prompted and keep history
-    exe 'hide buf' curBuf
-    "Switch to dest and shuffle source->dest
-    exe curNum . "wincmd w"
-    "Hide and open so that we aren't prompted and keep history
-    exe 'hide buf' markedBuf 
-endfunction
-
-nmap <silent> <leader>m :call MarkWindowSwap()<CR>
-nmap <silent> <leader>sw :call DoWindowSwap()<CR>
-
-
 ""
 "" Python Formatting
 ""
@@ -283,6 +227,14 @@ nmap <leader>p :PymodeLintAuto <cr> \| gggqG
 "" CtrlP
 ""
 let g:ctrlp_map = '<C-p>'
+" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
 
 ""
 "" Gundo
@@ -312,7 +264,6 @@ let g:syntastic_html_tidy_ignore_errors = [
     \"proprietary attribute \"hidden\"",
     \]
 let g:syntastic_javascript_checkers = ['eslint']
-
 
 ""
 "" Pymode
