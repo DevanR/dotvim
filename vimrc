@@ -256,6 +256,12 @@ let g:syntastic_html_tidy_ignore_errors = [
 let g:syntastic_javascript_checkers = ['eslint']
 
 ""
+"" Command T
+""
+let g:CommandTAcceptSelectionMap = '<C-t>'
+let g:CommandTAcceptSelectionTabMap = '<CR>'
+
+""
 "" Pymode
 ""
 au FileType python setlocal formatprg=autopep8\ -
