@@ -184,9 +184,9 @@ nmap <leader>a :Autoformat <CR>
 "" Syntastic
 ""
 let g:syntastic_check_on_open=1
+let g:syntastic_check_on_wq = 0
 let g:syntastic_cpp_compiler = 'g++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
-let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 let g:syntastic_html_tidy_ignore_errors = [
     \"trimming empty <i>",
     \"trimming empty <span>",
