@@ -57,7 +57,6 @@ let g:sh_noisk=1
 " Modelines (comments that set vim options on a per-file basis)
 set modeline
 set modelines=3
-
 " Insert only one space when joining lines that contain sentence-terminating
 " punctuation like `.`.
 set nojoinspaces
@@ -111,48 +110,50 @@ highlight CursorLineNR ctermbg=235 ctermfg=white
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MISC KEY MAPS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>y "*y
 " Move around splits with <c-hjkl>
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
-" Insert a hash rocket with <c-l>
-imap <c-l> <space>=><space>
-" Can't be bothered to understand ESC vs <c-c> in insert mode
-imap <c-c> <esc>
 nnoremap <leader><leader> <c-^>
-" Close all other windows, open a vertical split, and open this file's test
-" alternate in it.
-nnoremap <leader>s :call FocusOnFile()<cr>
-function! FocusOnFile()
-	tabnew %
- 	normalv
-	normall
-	call OpenTestAlternate()
-	normalh
-endfunction
-" Reload in chrome
-map <leader>l :w\|:silent !reload-chrome<cr>
-" Align selected lines
-vnoremap <leader>ib :!align<cr>
 " Save shortcut with leader s
 noremap <Leader>s :update<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MULTIPURPOSE TAB KEY
 " Indent if we're at the beginning of a line. Else, do completion.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! InsertTabWrapper()
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
+"function! InsertTabWrapper()
+"    let col = col('.') - 1
+"    if !col || getline('.')[col - 1] !~ '\k'
+"        return "\<tab>"
+"    else
+"        return "\<c-p>"
+"    endif
+"endfunction
+"inoremap <expr> <tab> InsertTabWrapper()
+"inoremap <s-tab> <c-n>
+
+function! Smart_TabComplete()
+    let line = getline('.')                         " current line
+  
+    let substr = strpart(line, -1, col('.')+1)      " from the start of the current
+                                                    " line to one character right
+                                                    " of the cursor
+    let substr = matchstr(substr, "[^ \t]*$")       " word till cursor
+    if (strlen(substr)==0)                          " nothing to match on empty string
         return "\<tab>"
+    endif
+    let has_period = match(substr, '\.') != -1      " position of period, if any
+    let has_slash = match(substr, '\/') != -1       " position of slash, if any
+    if (!has_period && !has_slash)
+        return "\<C-X>\<C-P>"                       " existing text matching
+    elseif ( has_slash )
+    	return "\<C-X>\<C-F>"                       " file matching
     else
-        return "\<c-p>"
+      	return "\<C-X>\<C-O>"                       " plugin matching
     endif
 endfunction
-inoremap <expr> <tab> InsertTabWrapper()
-inoremap <s-tab> <c-n>
-
+inoremap <tab> <c-r>=Smart_TabComplete()<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " OPEN FILES IN DIRECTORY OF CURRENT FILE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -165,15 +166,6 @@ map <leader>v :view %%
 " Insert the current time
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 command! InsertTime :normal a<c-r>=strftime('%F %H:%M:%S.0 %z')<cr>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" UI
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap Q <nop>                                         " Leave Ex Mode
-nmap <leader>e :Explore <cr>                             " Vim Explore mode
-nmap <leader>v :Vexplore <cr>                            " Vim Explore mode vertical split
-nmap <leader>h :Sexplore <cr>                            " Vim Explore mode horizontal split
-nmap <leader>t :Texplore <cr>                            " Vim Explore mode new tab
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Bite the bullet
@@ -208,16 +200,6 @@ cmap w!! w !sudo tee > /dev/null %
 nnoremap ; :
 
 nmap <silent> ,/ :nohlsearch<CR>                         " Clear search history
-
-set pastetoggle=<F2>                                     " Shortcut for pastemode
-
-" "
-" " Easy window navigation
-" "
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
 
 ""
 "" Python Formatting
