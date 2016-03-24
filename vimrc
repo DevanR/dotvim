@@ -136,7 +136,8 @@ endfunction
 map <leader>l :w\|:silent !reload-chrome<cr>
 " Align selected lines
 vnoremap <leader>ib :!align<cr>
-
+" Save shortcut with leader s
+noremap <Leader>s :update<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MULTIPURPOSE TAB KEY
 " Indent if we're at the beginning of a line. Else, do completion.
@@ -171,7 +172,7 @@ command! InsertTime :normal a<c-r>=strftime('%F %H:%M:%S.0 %z')<cr>
 nnoremap Q <nop>                                         " Leave Ex Mode
 nmap <leader>e :Explore <cr>                             " Vim Explore mode
 nmap <leader>v :Vexplore <cr>                            " Vim Explore mode vertical split
-nmap <leader>s :Sexplore <cr>                            " Vim Explore mode horizontal split
+nmap <leader>h :Sexplore <cr>                            " Vim Explore mode horizontal split
 nmap <leader>t :Texplore <cr>                            " Vim Explore mode new tab
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
