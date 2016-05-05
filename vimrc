@@ -172,9 +172,6 @@ let g:gundo_width = 60
 let g:gundo_preview_height = 45
 let g:gundo_right = 1
 
-
-nmap <leader>f :CommandT <cr>
-
 ""
 "" AutoFormat
 ""
@@ -197,16 +194,10 @@ let g:syntastic_html_tidy_ignore_errors = [
 let g:syntastic_javascript_checkers = ['eslint']
 
 ""
-"" Command T
-""
-let g:CommandTAcceptSelectionMap = '<C-t>'
-let g:CommandTAcceptSelectionTabMap = '<CR>'
-
-""
 "" Pymode
 ""
 au FileType python setlocal formatprg=autopep8\ -
-let g:pymode = 1
+let g:pymode = 0
 let g:pymode_doc = 1
 let g:pymode_run = 1
 let g:pymode_lint = 1
