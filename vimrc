@@ -57,7 +57,6 @@ let g:sh_noisk=1
 " Modelines (comments that set vim options on a per-file basis)
 set modeline
 set modelines=3
-
 " Insert only one space when joining lines that contain sentence-terminating
 " punctuation like `.`.
 set nojoinspaces
@@ -111,68 +110,20 @@ highlight CursorLineNR ctermbg=235 ctermfg=white
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MISC KEY MAPS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>y "*y
 " Move around splits with <c-hjkl>
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
-" Insert a hash rocket with <c-l>
-imap <c-l> <space>=><space>
-" Can't be bothered to understand ESC vs <c-c> in insert mode
-imap <c-c> <esc>
 nnoremap <leader><leader> <c-^>
-" Close all other windows, open a vertical split, and open this file's test
-" alternate in it.
-nnoremap <leader>s :call FocusOnFile()<cr>
-function! FocusOnFile()
-	tabnew %
- 	normalv
-	normall
-	call OpenTestAlternate()
-	normalh
-endfunction
-" Reload in chrome
-map <leader>l :w\|:silent !reload-chrome<cr>
-" Align selected lines
-vnoremap <leader>ib :!align<cr>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" MULTIPURPOSE TAB KEY
-" Indent if we're at the beginning of a line. Else, do completion.
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! InsertTabWrapper()
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<tab>"
-    else
-        return "\<c-p>"
-    endif
-endfunction
-inoremap <expr> <tab> InsertTabWrapper()
-inoremap <s-tab> <c-n>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" OPEN FILES IN DIRECTORY OF CURRENT FILE
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-cnoremap <expr> %% expand('%:h').'/'
-map <leader>e :edit %%
-map <leader>v :view %%
+" Save shortcut with leader s
+noremap <Leader>s :update<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " InsertTime COMMAND
 " Insert the current time
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 command! InsertTime :normal a<c-r>=strftime('%F %H:%M:%S.0 %z')<cr>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" UI
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap Q <nop>                                         " Leave Ex Mode
-nmap <leader>e :Explore <cr>                             " Vim Explore mode
-nmap <leader>v :Vexplore <cr>                            " Vim Explore mode vertical split
-nmap <leader>s :Sexplore <cr>                            " Vim Explore mode horizontal split
-nmap <leader>t :Texplore <cr>                            " Vim Explore mode new tab
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Bite the bullet
@@ -208,16 +159,6 @@ nnoremap ; :
 
 nmap <silent> ,/ :nohlsearch<CR>                         " Clear search history
 
-set pastetoggle=<F2>                                     " Shortcut for pastemode
-
-" "
-" " Easy window navigation
-" "
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
-
 ""
 "" Python Formatting
 ""
@@ -231,9 +172,6 @@ let g:gundo_width = 60
 let g:gundo_preview_height = 45
 let g:gundo_right = 1
 
-
-nmap <leader>f :CommandT <cr>
-
 ""
 "" AutoFormat
 ""
@@ -243,9 +181,9 @@ nmap <leader>a :Autoformat <CR>
 "" Syntastic
 ""
 let g:syntastic_check_on_open=1
+let g:syntastic_check_on_wq = 0
 let g:syntastic_cpp_compiler = 'g++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
-let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 let g:syntastic_html_tidy_ignore_errors = [
     \"trimming empty <i>",
     \"trimming empty <span>",
@@ -259,7 +197,7 @@ let g:syntastic_javascript_checkers = ['eslint']
 "" Pymode
 ""
 au FileType python setlocal formatprg=autopep8\ -
-let g:pymode = 1
+let g:pymode = 0
 let g:pymode_doc = 1
 let g:pymode_run = 1
 let g:pymode_lint = 1
@@ -278,7 +216,10 @@ let g:pymode_trim_whitespaces = 1
 let g:pymode_lint_ignore = "F0401,C0111,C0301,E501,E265"
 let g:pymode_quickfix_minheight = 3
 let g:pymode_quickfix_maxheight = 12
-"let g:pymode_rope_show_doc_bind = 'R'
-"let g:pymode_rope_goto_definition_bind = 'D'
-"let g:pymode_rope_organize_imports_bind = 'O'
 let g:pymode_lint_checkers = ['pylint', 'pep8']
+let g:pymode_breakpoint = 1
+let g:pymode_breakpoint_bind = '<leader>b'
+let g:pymode_virtualenv = 1
+let g:pymode_syntax_all = 1
+let g:pymode_syntax_indent_errors = g:pymode_syntax_all
+let g:pymode_syntax_space_errors = g:pymode_syntax_all
