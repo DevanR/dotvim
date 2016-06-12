@@ -180,7 +180,7 @@ nmap <leader>a :Autoformat <CR>
 ""
 "" Syntastic
 ""
-let g:syntastic_check_on_open=1
+let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_cpp_compiler = 'g++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
@@ -197,7 +197,7 @@ let g:syntastic_javascript_checkers = ['eslint']
 "" Pymode
 ""
 au FileType python setlocal formatprg=autopep8\ -
-let g:pymode = 0
+let g:pymode = 1
 let g:pymode_doc = 1
 let g:pymode_run = 1
 let g:pymode_lint = 1
