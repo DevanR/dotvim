@@ -95,7 +95,7 @@ if has("gui_running")
 -endif
 -
 set guifont=Bitstream\ Vera\ Sans\ Mono:h12
-colorscheme solarized
+"colorscheme solarized
 set background=dark
 set encoding=utf-8
 set fileencoding=utf-8
@@ -180,7 +180,7 @@ nmap <leader>a :Autoformat <CR>
 ""
 "" Syntastic
 ""
-let g:syntastic_check_on_open=1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_cpp_compiler = 'g++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
@@ -197,10 +197,10 @@ let g:syntastic_javascript_checkers = ['eslint']
 "" Pymode
 ""
 au FileType python setlocal formatprg=autopep8\ -
-let g:pymode = 0
+let g:pymode = 1
 let g:pymode_doc = 1
-let g:pymode_run = 1
-let g:pymode_lint = 1
+let g:pymode_run = 0
+let g:pymode_lint = 0
 let g:pymode_rope = 0
 let g:pymode_motion = 0
 let g:pymode_syntax = 1
