@@ -23,6 +23,10 @@ set hlsearch
 set ignorecase smartcase
 " highlight current line
 set cursorline
+if has('autocmd')
+	autocmd WinEnter * setlocal cursorline
+	autocmd WinLeave * setlocal nocursorline
+endif
 set cmdheight=1
 set switchbuf=useopen
 set showtabline=2
@@ -88,18 +92,22 @@ augroup END
 " COLOR
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("gui_running")
--    set guioptions-=T
--    set guioptions+=e
--    set t_Co=256
--    set guitablabel=%M\ %t
--endif
--
+    set guioptions-=T
+    set guioptions+=e
+    set t_Co=256
+    set guitablabel=%M\ %t
+endif
+
 set guifont=Bitstream\ Vera\ Sans\ Mono:h12
-"colorscheme solarized
+
+" Solarized options
+let g:solarized_visibility = "high"
+let g:solarized_contrast = "high"
+colorscheme solarized
 set background=dark
+
 set encoding=utf-8
 set fileencoding=utf-8
-set t_Co=256 " 256 colors
 highlight CursorLineNR ctermbg=235 ctermfg=white
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
