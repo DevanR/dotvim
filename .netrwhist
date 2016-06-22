@@ -1,8 +1,3 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/Users/dre09/Workspace/git-bskyb-com/bms/wholesale'
-let g:netrw_dirhist_2='/Users/dre09/Workspace/git-bskyb-com/bms'
-let g:netrw_dirhist_3='/Users/dre09/Workspace/git-bskyb-com/bms/wholesale'
-let g:netrw_dirhist_4='/Users/dre09/Workspace/git-bskyb-com/bms/templates'
-let g:netrw_dirhist_5='/Users/dre09/Workspace/git-bskyb-com/bms/functional_tests'
-let g:netrw_dirhist_6='/Users/dre09/Workspace/git-bskyb-com/bms/intra_planning'
+let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_1='/home/dr/.vim'
