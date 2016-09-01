@@ -13,7 +13,6 @@ set history=10000
 set expandtab
 set tabstop=4
 set shiftwidth=4
-set softtabstop=4
 set autoindent
 set laststatus=2
 set showmatch
@@ -113,7 +112,9 @@ highlight CursorLineNR ctermbg=235 ctermfg=white
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " STATUS LINE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-:set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MISC KEY MAPS
@@ -188,8 +189,10 @@ nmap <leader>a :Autoformat <CR>
 ""
 "" Syntastic
 ""
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
+let g:syntastic_check_on_wq = 0
 let g:syntastic_cpp_compiler = 'g++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 let g:syntastic_html_tidy_ignore_errors = [
@@ -207,8 +210,8 @@ let g:syntastic_javascript_checkers = ['eslint']
 au FileType python setlocal formatprg=autopep8\ -
 let g:pymode = 1
 let g:pymode_doc = 1
-let g:pymode_run = 0
-let g:pymode_lint = 0
+let g:pymode_run = 1
+let g:pymode_lint = 1
 let g:pymode_rope = 0
 let g:pymode_motion = 0
 let g:pymode_syntax = 1
@@ -227,7 +230,7 @@ let g:pymode_quickfix_maxheight = 12
 let g:pymode_lint_checkers = ['pylint', 'pep8']
 let g:pymode_breakpoint = 1
 let g:pymode_breakpoint_bind = '<leader>b'
-let g:pymode_virtualenv = 0
+let g:pymode_virtualenv = 1
 let g:pymode_syntax_all = 1
 let g:pymode_syntax_indent_errors = g:pymode_syntax_all
 let g:pymode_syntax_space_errors = g:pymode_syntax_all
