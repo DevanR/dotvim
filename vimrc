@@ -205,6 +205,11 @@ let g:syntastic_html_tidy_ignore_errors = [
 let g:syntastic_javascript_checkers = ['eslint']
 
 ""
+"" Javascript
+""
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+
+""
 "" Pymode
 ""
 au FileType python setlocal formatprg=autopep8\ -
