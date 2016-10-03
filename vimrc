@@ -203,6 +203,7 @@ let g:syntastic_html_tidy_ignore_errors = [
     \"proprietary attribute \"hidden\"",
     \]
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_quiet_messages = { 'regex': ['E501', 'E128'] }
 
 ""
 "" Javascript
