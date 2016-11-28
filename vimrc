@@ -25,6 +25,11 @@ Plug 'mxw/vim-jsx'
 " Add plugins to &runtimepath
 call plug#end()
 
+autocmd VimEnter *
+  \ if !empty(filter(copy(g:plugs), '!isdirectory(v:val.dir)'))
+  \|  PlugInstall | q
+  \| endif
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BASIC EDITING CONFIGURATION
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
