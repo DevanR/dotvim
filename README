@@ -2,44 +2,27 @@ Installation:
 
     git clone git://github.com/DevanR/dotvim.git ~/.vim
 
+	install vim-plug
+
+	:PlugInstall
+
 Create symlinks:
 
     ln -s ~/.vim/vimrc ~/.vimrc
     ln -s ~/.vim/gvimrc ~/.gvimrc
 
-Switch to the `~/.vim` directory, and fetch submodules:
+Switch to the `~/.vim` directory:
 
     cd ~/.vim
     git submodule init
     git submodule update
 
-Upgrading a plugin bundle
-
-    cd ~/.vim/bundle/fugitive
-    git pull origin master
-
 Upgrading all bundled plugins
 
-    git submodule foreach git pull origin master
-
-Add a plugin
-
-    cd ~/.vim
-    git submodule add https://..... bundle/<plugin_name>
-    git commit .
-    git push
-    git pull
-
-Remove a git module
-
-    Delete the relevant section from the .gitmodules file.
-    Delete the relevant section from .git/config.
-    Stage changes with 'git add'
-    Run git rm --cached path_to_submodule (no trailing slash).
-    Commit and delete the now untracked submodule files.
+    :PlugUpdate
 
 Notes
-
+    https://github.com/junegunn/vim-plug
     Install Markdown (http://daringfireball.net/projects/markdown/)
     Install ctags
     On OSX: Run git config --global core.editor /usr/bin/vim

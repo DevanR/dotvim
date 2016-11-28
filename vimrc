@@ -1,6 +1,29 @@
 autocmd!
 
-call pathogen#incubate()
+"call pathogen#incubate()
+
+call plug#begin('~/.vim/plugged')
+" Make sure you use single quotes
+
+Plug 'tpope/vim-sensible'
+Plug 'sjl/gundo.vim'
+Plug 'klen/python-mode'
+Plug 'altercation/vim-colors-solarized'
+Plug 'vim-syntastic/syntastic'
+Plug 'vim-airline/vim-airline'
+Plug 'Chiel92/vim-autoformat'
+Plug 'jbgutierrez/vim-babel'
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'pangloss/vim-javascript'
+Plug 'jelera/vim-javascript-syntax'
+Plug 'elzr/vim-json'
+Plug 'mxw/vim-jsx'
+
+
+" Add plugins to &runtimepath
+call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BASIC EDITING CONFIGURATION
