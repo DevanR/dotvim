@@ -65,7 +65,7 @@ set modelines=3
 set nojoinspaces
 " If a file is changed outside of vim, automatically reload it without asking
 set autoread
-set number
+set number relativenumber
 set spell
 " Have Vim clear terminal on exit
 au VimLeave * :!clear
@@ -209,6 +209,8 @@ let g:syntastic_quiet_messages = { 'regex': ['E501', 'E128'] }
 "" Javascript
 ""
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
+autocmd Filetype html setlocal ts=2 sts=2 sw=2
 
 ""
 "" Pymode
