@@ -1,7 +1,5 @@
 autocmd!
 
-"call pathogen#incubate()
-
 call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 
@@ -9,7 +7,7 @@ Plug 'tpope/vim-sensible'
 Plug 'sjl/gundo.vim'
 Plug 'klen/python-mode'
 Plug 'altercation/vim-colors-solarized'
-Plug 'vim-syntastic/syntastic'
+Plug 'w0rp/ale'
 Plug 'vim-airline/vim-airline'
 Plug 'Chiel92/vim-autoformat'
 Plug 'jbgutierrez/vim-babel'
@@ -20,15 +18,16 @@ Plug 'pangloss/vim-javascript'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'elzr/vim-json'
 Plug 'mxw/vim-jsx'
+Plug 'Valloric/YouCompleteMe'
 
 
 " Add plugins to &runtimepath
 call plug#end()
 
 autocmd VimEnter *
-  \ if !empty(filter(copy(g:plugs), '!isdirectory(v:val.dir)'))
-  \|  PlugInstall | q
-  \| endif
+			\ if !empty(filter(copy(g:plugs), '!isdirectory(v:val.dir)'))
+			\|  PlugInstall | q
+			\| endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BASIC EDITING CONFIGURATION
@@ -105,24 +104,24 @@ set paste
 " CUSTOM AUTOCMDS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 augroup vimrcEx
-  " Clear all autocmds in the group
-  autocmd!
-  autocmd FileType text setlocal textwidth=78
-  " Jump to last cursor position unless it's invalid or in an event handler
-  autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
+	" Clear all autocmds in the group
+	autocmd!
+	autocmd FileType text setlocal textwidth=78
+	" Jump to last cursor position unless it's invalid or in an event handler
+	autocmd BufReadPost *
+				\ if line("'\"") > 0 && line("'\"") <= line("$") |
+				\   exe "normal g`\"" |
+				\ endif
 augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COLOR
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("gui_running")
-    set guioptions-=T
-    set guioptions+=e
-    set t_Co=256
-    set guitablabel=%M\ %t
+	set guioptions-=T
+	set guioptions+=e
+	set t_Co=256
+	set guitablabel=%M\ %t
 endif
 
 set guifont=Bitstream\ Vera\ Sans\ Mono:h12
@@ -141,7 +140,6 @@ highlight CursorLineNR ctermbg=235 ctermfg=white
 " STATUS LINE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -175,7 +173,7 @@ noremap <Right> <NOP>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set noerrorbells visualbell t_vb=
 if has('autocmd')
-  autocmd GUIEnter * set visualbell t_vb=
+	autocmd GUIEnter * set visualbell t_vb=
 endif
 set novisualbell
 set tm=500
@@ -215,23 +213,12 @@ let g:gundo_right = 1
 nmap <leader>a :Autoformat <CR>
 
 ""
-"" Syntastic
+"" ALE
 ""
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_cpp_compiler = 'g++'
-let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
-let g:syntastic_html_tidy_ignore_errors = [
-    \"trimming empty <i>",
-    \"trimming empty <span>",
-    \"<input> proprietary attribute \"autocomplete\"",
-    \"proprietary attribute \"role\"",
-    \"proprietary attribute \"hidden\"",
-    \]
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_quiet_messages = { 'regex': ['E501', 'E128'] }
+set nocompatible
+filetype off
+let &runtimepath.=',~/.vim/bundle/ale'
+filetype plugin on
 
 ""
 "" Javascript
@@ -241,16 +228,26 @@ autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
 
 ""
+"" YAPF Python Formatter
+""
+autocmd FileType python nnoremap <leader>= :0,$!yapf<CR>
+
+""
+"" iSort
+""
+autocmd FileType python nnoremap <leader>i :!isort %<CR><CR>
+
+""
 "" Pymode
 ""
 au FileType python setlocal formatprg=autopep8\ -
 let g:pymode = 1
-let g:pymode_doc = 1
-let g:pymode_run = 1
-let g:pymode_lint = 1
+let g:pymode_doc = 0
+let g:pymode_run = 0
+let g:pymode_lint = 0
 let g:pymode_rope = 0
 let g:pymode_motion = 0
-let g:pymode_syntax = 1
+let g:pymode_syntax = 0
 let g:pymode_options = 0
 let g:pymode_indent = 1
 let g:pymode_folding = 1
@@ -266,7 +263,7 @@ let g:pymode_quickfix_maxheight = 12
 let g:pymode_lint_checkers = ['pylint', 'pep8']
 let g:pymode_breakpoint = 1
 let g:pymode_breakpoint_bind = '<leader>b'
-let g:pymode_virtualenv = 1
-let g:pymode_syntax_all = 1
+let g:pymode_virtualenv = 0
+let g:pymode_syntax_all = 0
 let g:pymode_syntax_indent_errors = g:pymode_syntax_all
 let g:pymode_syntax_space_errors = g:pymode_syntax_all
