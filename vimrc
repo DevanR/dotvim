@@ -77,7 +77,7 @@ syntax on
 filetype plugin indent on
 " use emacs-style tab completion when selecting files, etc
 set wildmode=longest,list
-let mapleader="'"
+let mapleader=","
 " Fix slow O inserts
 :set timeout timeoutlen=1000 ttimeoutlen=100
 " Normally, Vim messes with iskeyword when you open a shell file. This can
@@ -139,8 +139,7 @@ highlight CursorLineNR ctermbg=235 ctermfg=white
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " STATUS LINE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set statusline+=%#warningmsg#
-set statusline+=%*
+set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MISC KEY MAPS
