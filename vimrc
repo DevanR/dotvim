@@ -8,7 +8,6 @@ Plug 'sjl/gundo.vim'
 Plug 'klen/python-mode'
 Plug 'altercation/vim-colors-solarized'
 Plug 'w0rp/ale'
-Plug 'vim-airline/vim-airline'
 Plug 'Chiel92/vim-autoformat'
 Plug 'jbgutierrez/vim-babel'
 Plug 'ekalinin/Dockerfile.vim'
@@ -19,6 +18,7 @@ Plug 'jelera/vim-javascript-syntax'
 Plug 'elzr/vim-json'
 Plug 'mxw/vim-jsx'
 Plug 'Valloric/YouCompleteMe'
+Plug 'wincent/command-t'
 
 
 " Add plugins to &runtimepath
@@ -229,7 +229,7 @@ autocmd Filetype html setlocal ts=2 sts=2 sw=2
 ""
 "" YAPF Python Formatter
 ""
-autocmd FileType python nnoremap <leader>= :0,$!yapf<CR>
+autocmd FileType python nnoremap <leader>f :0,$!yapf<CR>
 
 ""
 "" iSort
