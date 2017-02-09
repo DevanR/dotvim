@@ -3,22 +3,22 @@ autocmd!
 call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 
-Plug 'tpope/vim-sensible'
-Plug 'sjl/gundo.vim'
-Plug 'klen/python-mode'
+Plug 'wincent/command-t'
 Plug 'altercation/vim-colors-solarized'
-Plug 'w0rp/ale'
+Plug 'sjl/gundo.vim'
 Plug 'Chiel92/vim-autoformat'
-Plug 'jbgutierrez/vim-babel'
-Plug 'ekalinin/Dockerfile.vim'
+Plug 'w0rp/ale'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-sensible'
 Plug 'pangloss/vim-javascript'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'elzr/vim-json'
 Plug 'mxw/vim-jsx'
+Plug 'jbgutierrez/vim-babel'
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'tmhedberg/SimpylFold'
 Plug 'Valloric/YouCompleteMe'
-Plug 'wincent/command-t'
 
 
 " Add plugins to &runtimepath
@@ -218,6 +218,12 @@ set nocompatible
 filetype off
 let &runtimepath.=',~/.vim/bundle/ale'
 filetype plugin on
+" Write this in your vimrc file
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 0
+" You can disable this option too
+" if you don't want linters to run on opening a file
+let g:ale_lint_on_enter = 0
 
 ""
 "" Javascript
