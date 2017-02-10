@@ -99,7 +99,9 @@ au VimLeave * :!clear
 set foldmethod=syntax
 set nofoldenable
 set paste
-
+" More natural split creation
+set splitbelow
+set splitright
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM AUTOCMDS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -149,7 +151,7 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
-nnoremap <leader><leader> <c-^>
+
 " Save shortcut with leader s
 noremap <Leader>s :update<CR>
 
