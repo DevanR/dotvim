@@ -128,7 +128,9 @@ endif
 
 set guifont=Bitstream\ Vera\ Sans\ Mono:h12
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Solarized options
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:solarized_visibility = "high"
 let g:solarized_contrast = "high"
 colorscheme solarized
@@ -179,9 +181,9 @@ endif
 set novisualbell
 set tm=500
 
-""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Mouse
-""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set mouse=a                                              " Mouse events
 map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
@@ -195,27 +197,27 @@ nnoremap ; :
 
 nmap <silent> ,/ :nohlsearch<CR>                         " Clear search history
 
-""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Python Formatting
-""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <leader>p :PymodeLintAuto <cr> \| gggqG
 
-""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Gundo
-""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <leader>u :GundoToggle <cr>
 let g:gundo_width = 60
 let g:gundo_preview_height = 45
 let g:gundo_right = 1
 
-""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" AutoFormat
-""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <leader>a :Autoformat <CR>
 
-""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" ALE
-""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible
 filetype off
 let &runtimepath.=',~/.vim/bundle/ale'
@@ -227,50 +229,20 @@ let g:ale_lint_on_text_changed = 0
 " if you don't want linters to run on opening a file
 let g:ale_lint_on_enter = 0
 
-""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Javascript
-""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
 
-""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" YAPF Python Formatter
-""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd FileType python nnoremap <leader>f :0,$!yapf<CR>
 
-""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" iSort
-""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd FileType python nnoremap <leader>i :!isort %<CR><CR>
 
-""
-"" Pymode
-""
-au FileType python setlocal formatprg=autopep8\ -
-let g:pymode = 1
-let g:pymode_doc = 0
-let g:pymode_run = 0
-let g:pymode_lint = 0
-let g:pymode_rope = 0
-let g:pymode_motion = 0
-let g:pymode_syntax = 0
-let g:pymode_options = 0
-let g:pymode_indent = 1
-let g:pymode_folding = 1
-let g:pymode_warnings = 0
-let g:pymode_doc_bind = 'K'
-"let g:pymode_lint_sort = []
-let g:pymode_lint_message = 0
-let g:pymode_lint_on_write = 0
-let g:pymode_trim_whitespaces = 1
-let g:pymode_lint_ignore = "F0401,C0111,C0301,E501,E265"
-let g:pymode_quickfix_minheight = 3
-let g:pymode_quickfix_maxheight = 12
-let g:pymode_lint_checkers = ['pylint', 'pep8']
-let g:pymode_breakpoint = 1
-let g:pymode_breakpoint_bind = '<leader>b'
-let g:pymode_virtualenv = 0
-let g:pymode_syntax_all = 0
-let g:pymode_syntax_indent_errors = g:pymode_syntax_all
-let g:pymode_syntax_space_errors = g:pymode_syntax_all
