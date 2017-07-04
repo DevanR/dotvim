@@ -3,7 +3,6 @@ autocmd!
 call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 
-Plug 'wincent/command-t'
 Plug 'altercation/vim-colors-solarized'
 Plug 'sjl/gundo.vim'
 Plug 'Chiel92/vim-autoformat'
@@ -266,4 +265,4 @@ endfunction
 
 " Find all files in all non-dot directories starting in the working directory.
 " Fuzzy select one of those. Open the selected file with :e.
-nnoremap <leader>o :call SelectaCommand("find * -type f", "", ":e")<cr>
+nnoremap <leader>o :call SelectaCommand("find * -type f", "", ":tabe")<cr>
