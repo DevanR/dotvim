@@ -17,7 +17,8 @@ Plug 'mxw/vim-jsx'
 Plug 'jbgutierrez/vim-babel'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'tmhedberg/SimpylFold'
-Plug 'Valloric/YouCompleteMe'
+Plug 'davidhalter/jedi-vim'
+Plug 'ervandew/supertab'
 
 
 " Add plugins to &runtimepath
@@ -97,7 +98,6 @@ set spell
 au VimLeave * :!clear
 set foldmethod=syntax
 set nofoldenable
-set paste
 " More natural split creation
 set splitbelow
 set splitright
