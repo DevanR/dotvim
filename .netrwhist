@@ -1,5 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_cnt =8
 let g:netrw_dirhist_1='/Users/dre09/Workspace/git-bskyb-com/bms'
 let g:netrw_dirhist_2='/Users/dre09/Workspace/git-bskyb-com/bms/dashboard'
 let g:netrw_dirhist_3='/Users/dre09/.matplotlib'
@@ -7,3 +7,4 @@ let g:netrw_dirhist_4='/Users/dre09/Workspace/git-bskyb-com/bms/gea_planning/man
 let g:netrw_dirhist_5='/Users/dre09/.tmux'
 let g:netrw_dirhist_6='/Users/dre09/Workspace/git-bskyb-com/bms/gea_planning/tests'
 let g:netrw_dirhist_7='/Users/dre09/Workspace/git-bskyb-com/bms/gea_upgrade/management/commands'
+let g:netrw_dirhist_8='/Users/dre09/Workspace/git-bskyb-com/pytest-project/metro/utils'

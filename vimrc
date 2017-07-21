@@ -4,21 +4,21 @@ call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 
 Plug 'altercation/vim-colors-solarized'
-Plug 'sjl/gundo.vim'
 Plug 'Chiel92/vim-autoformat'
-Plug 'w0rp/ale'
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-sensible'
-Plug 'pangloss/vim-javascript'
-Plug 'jelera/vim-javascript-syntax'
-Plug 'elzr/vim-json'
-Plug 'mxw/vim-jsx'
-Plug 'jbgutierrez/vim-babel'
-Plug 'ekalinin/Dockerfile.vim'
-Plug 'tmhedberg/SimpylFold'
 Plug 'davidhalter/jedi-vim'
+Plug 'tmhedberg/SimpylFold'
+Plug 'tpope/vim-fugitive'
+Plug 'wincent/command-t'
 Plug 'ervandew/supertab'
+Plug 'sjl/gundo.vim'
+
+"Plug 'w0rp/ale'
+"Plug 'pangloss/vim-javascript'
+"Plug 'jelera/vim-javascript-syntax'
+"Plug 'elzr/vim-json'
+"Plug 'mxw/vim-jsx'
+"Plug 'jbgutierrez/vim-babel'
+"Plug 'ekalinin/Dockerfile.vim'
 
 
 " Add plugins to &runtimepath
@@ -156,6 +156,10 @@ nnoremap <c-l> <c-w>l
 " Save shortcut with leader s
 noremap <Leader>s :update<CR>
 
+" Shortcut for bms test
+noremap <leader>t :w\|:silent !echo "cd Workspace/git-bskyb-com/bms/ && source ~/.virtualenvs/bms/bin/activate && ./manage.py test utils" > ~/test-commands<CR>
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " InsertTime COMMAND
 " Insert the current time
@@ -266,3 +270,13 @@ endfunction
 " Find all files in all non-dot directories starting in the working directory.
 " Fuzzy select one of those. Open the selected file with :e.
 nnoremap <leader>o :call SelectaCommand("find * -type f", "", ":tabe")<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" CommandT
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <leader>o :CommandT <CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" CommandT
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd FileType python setlocal completeopt-=preview
