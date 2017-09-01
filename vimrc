@@ -5,12 +5,14 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'altercation/vim-colors-solarized'
 Plug 'Chiel92/vim-autoformat'
-Plug 'davidhalter/jedi-vim'
 Plug 'tmhedberg/SimpylFold'
-Plug 'tpope/vim-fugitive'
-Plug 'wincent/command-t'
-Plug 'ervandew/supertab'
-Plug 'sjl/gundo.vim'
+
+"Plug 'davidhalter/jedi-vim'
+"Plug 'tpope/vim-fugitive'
+"Plug 'wincent/command-t'
+"Plug 'ervandew/supertab'
+"Plug 'sjl/gundo.vim'
+"Plug 'vim-syntastic/syntastic'
 
 "Plug 'w0rp/ale'
 "Plug 'pangloss/vim-javascript'
@@ -32,7 +34,6 @@ autocmd VimEnter *
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BASIC EDITING CONFIGURATION
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible
 " allow unsaved background buffers and remember marks/undo for them
 " set hidden
 " " remember more commands and search history
@@ -62,7 +63,6 @@ set shell=bash
 " Prevent Vim from clobbering the scrollback buffer. See
 " http://www.shallowsky.com/linux/noaltscreen.html
 set t_ti= t_te=
-set scrolloff=30
 set nobackup
 set nowritebackup
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
@@ -157,7 +157,8 @@ nnoremap <c-l> <c-w>l
 noremap <Leader>s :update<CR>
 
 " Shortcut for bms test
-noremap <leader>t :w\|:silent !echo "cd Workspace/git-bskyb-com/bms/ && source ~/.virtualenvs/bms/bin/activate && ./manage.py test utils" > ~/test-commands<CR>
+"noremap <leader>t :w\|:silent !echo "cd Workspace/git-bskyb-com/bms/ && source ~/.virtualenvs/bms/bin/activate && ./manage.py test utils" > ~/test-commands<CR>
+noremap <leader>t :w\|:silent !echo "cd Workspace/git-bskyb-com/bms/ && source ~/.virtualenvs/bms/bin/activate && fab test" > ~/test-commands<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -221,16 +222,16 @@ nmap <leader>f :Autoformat<CR> \| :0,$!yapf<CR> \| :update<CR> \| :!isort %<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" ALE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible
-filetype off
-let &runtimepath.=',~/.vim/bundle/ale'
-filetype plugin on
-" Write this in your vimrc file
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 0
-" You can disable this option too
-" if you don't want linters to run on opening a file
-let g:ale_lint_on_enter = 0
+"set nocompatible
+"filetype off
+"let &runtimepath.=',~/.vim/bundle/ale'
+"filetype plugin on
+"" Write this in your vimrc file
+"let g:ale_lint_on_save = 1
+"let g:ale_lint_on_text_changed = 0
+"" You can disable this option too
+"" if you don't want linters to run on opening a file
+"let g:ale_lint_on_enter = 0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Javascript
@@ -274,9 +275,22 @@ nnoremap <leader>o :call SelectaCommand("find * -type f", "", ":tabe")<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" CommandT
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <leader>o :CommandT <CR>
+"nmap <leader>o :CommandT <CR>
+"autocmd FileType python setlocal completeopt-=preview
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" CommandT
+"" Syntastic
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd FileType python setlocal completeopt-=preview
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"
+"let g:syntastic_enable_signs=1
+"let g:syntastic_auto_jump=1
+"let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
+"let g:syntastic_json_checkers=['jsonlint', 'jsonval']
+"let g:syntastic_twig_checkers=['twiglint']
+"let g:syntastic_enable_highlighting=1
+"let g:syntastic_echo_current_error=1
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
