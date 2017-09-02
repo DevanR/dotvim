@@ -6,13 +6,13 @@ call plug#begin('~/.vim/plugged')
 Plug 'altercation/vim-colors-solarized'
 Plug 'Chiel92/vim-autoformat'
 Plug 'tmhedberg/SimpylFold'
+Plug 'vim-syntastic/syntastic'
 
 "Plug 'davidhalter/jedi-vim'
 "Plug 'tpope/vim-fugitive'
 "Plug 'wincent/command-t'
 "Plug 'ervandew/supertab'
 "Plug 'sjl/gundo.vim'
-"Plug 'vim-syntastic/syntastic'
 
 "Plug 'w0rp/ale'
 "Plug 'pangloss/vim-javascript'
@@ -281,16 +281,19 @@ nnoremap <leader>o :call SelectaCommand("find * -type f", "", ":tabe")<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Syntastic
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-"
-"let g:syntastic_enable_signs=1
-"let g:syntastic_auto_jump=1
-"let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
-"let g:syntastic_json_checkers=['jsonlint', 'jsonval']
-"let g:syntastic_twig_checkers=['twiglint']
-"let g:syntastic_enable_highlighting=1
-"let g:syntastic_echo_current_error=1
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_jump=1
+let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
+let g:syntastic_json_checkers=['jsonlint', 'jsonval']
+let g:syntastic_twig_checkers=['twiglint']
+let g:syntastic_enable_highlighting=1
+let g:syntastic_echo_current_error=1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_quiet_messages = { "type": "style" }
+
