@@ -8,6 +8,7 @@ Plug 'sjl/gundo.vim'
 Plug 'fisadev/vim-isort'
 Plug 'mhinz/vim-signify'
 Plug 'tmhedberg/SimpylFold'
+Plug 'airblade/vim-gitgutter'
 Plug 'Chiel92/vim-autoformat'
 Plug 'altercation/vim-colors-solarized'
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
@@ -203,8 +204,8 @@ let g:gundo_right = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" All: AutoFormat & Python Formatter & Save & Sort & Save
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:formatter_yapf_style = 'google'
-nmap <leader>f :Autoformat<CR> \| :update<CR> \| :!isort %<CR>
+let g:formatter_yapf_style = 'pep8'
+nmap <leader>f :Autoformat<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" fzf
@@ -215,37 +216,6 @@ nmap ; :Buffers<CR>
 nmap <Leader>t :Tags<CR>
 nmap <Leader>o :Files<CR>
 nmap <Leader>a :Ag<CR>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" ALE
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-filetype on
-let &runtimepath.=',~/.vim/bundle/ale'
-filetype plugin on
-" Write this in your vimrc file
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 1
-" You can disable this option too
-" if you don't want linters to run on opening a file
-let g:ale_lint_on_enter = 1
-let g:ale_sign_warning = '▲'
-let g:ale_sign_error = '✗'
-highlight link ALEWarningSign String
-highlight link ALEErrorSign Title
-function! LinterStatus() abort
-    let l:counts = ale#statusline#Count(bufnr(''))
-
-    let l:all_errors = l:counts.error + l:counts.style_error
-    let l:all_non_errors = l:counts.total - l:all_errors
-
-    return l:counts.total == 0 ? 'OK' : printf(
-    \   '%dW %dE',
-    \   all_non_errors,
-    \   all_errors
-    \)
-endfunction
-
-set statusline=%{LinterStatus()}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Javascript
@@ -278,3 +248,42 @@ autocmd FileType python nnoremap <leader>i :!isort %<CR>
 "let g:syntastic_auto_loc_list = 1
 "let g:syntastic_quiet_messages = { "type": "style" }
 "
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" ALE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let &runtimepath.=',~/.vim/bundle/ale'
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 1
+let g:ale_lint_on_enter = 1
+let g:ale_sign_warning = '!'
+let g:ale_sign_error = '✗'
+highlight link ALEWarningSign String
+highlight link ALEErrorSign Title
+let g:ale_completion_enabled = 1
+let g:ale_fix_on_save = 1
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
+function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+
+    return l:counts.total == 0 ? 'OK' : printf(
+    \   '%dW %dE',
+    \   all_non_errors,
+    \   all_errors
+    \)
+endfunction
+
+set statusline=%{LinterStatus()}
+
+" Load all plugins now.
+" Plugins need to be added to runtimepath before helptags can be generated.
+packloadall
+" Load all of the helptags now, after plugins have been loaded.
+" All messages and errors will be ignored.
+silent! helptags ALL
