@@ -6,22 +6,12 @@ call plug#begin('~/.vim/plugged')
 Plug 'altercation/vim-colors-solarized'
 Plug 'Chiel92/vim-autoformat'
 Plug 'tmhedberg/SimpylFold'
-Plug 'vim-syntastic/syntastic'
-
-"Plug 'davidhalter/jedi-vim'
-"Plug 'tpope/vim-fugitive'
-"Plug 'wincent/command-t'
-"Plug 'ervandew/supertab'
-"Plug 'sjl/gundo.vim'
-
-"Plug 'w0rp/ale'
-"Plug 'pangloss/vim-javascript'
-"Plug 'jelera/vim-javascript-syntax'
-"Plug 'elzr/vim-json'
-"Plug 'mxw/vim-jsx'
-"Plug 'jbgutierrez/vim-babel'
-"Plug 'ekalinin/Dockerfile.vim'
-
+Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+Plug 'w0rp/ale'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'sjl/gundo.vim'
+Plug 'fisadev/vim-isort'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -125,8 +115,6 @@ if has("gui_running")
 	set guitablabel=%M\ %t
 endif
 
-set guifont=Bitstream\ Vera\ Sans\ Mono:h12
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Solarized options
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -147,6 +135,10 @@ set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MISC KEY MAPS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Use the space key to toggle folds
+nnoremap <space> za
+vnoremap <space> zf
+
 " Move around splits with <c-hjkl>
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
@@ -210,28 +202,38 @@ let g:gundo_preview_height = 45
 let g:gundo_right = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" AutoFormat
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <leader>a :Autoformat<CR>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" All: AutoFormat & Python Formatter & Save & Sort & Save
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <leader>f :Autoformat<CR> \| :0,$!yapf<CR> \| :update<CR> \| :!isort %<CR>
+let g:formatter_yapf_style = 'pep8'
+nmap <leader>f :Autoformat<CR> \| :update<CR> \| :!isort %<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" fzf
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set rtp+=/usr/local/opt/fzf
+set rtp+=~/.fzf
+nmap ; :Buffers<CR>
+nmap <Leader>t :Tags<CR>
+nmap <Leader>o :Files<CR>
+nmap <Leader>a :Ag<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" ALE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"set nocompatible
-"filetype off
-"let &runtimepath.=',~/.vim/bundle/ale'
-"filetype plugin on
-"" Write this in your vimrc file
-"let g:ale_lint_on_save = 1
-"let g:ale_lint_on_text_changed = 0
-"" You can disable this option too
-"" if you don't want linters to run on opening a file
-"let g:ale_lint_on_enter = 0
+set nocompatible
+filetype off
+let &runtimepath.=',~/.vim/bundle/ale'
+filetype plugin on
+" Write this in your vimrc file
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 0
+" You can disable this option too
+" if you don't want linters to run on opening a file
+let g:ale_lint_on_enter = 0
+let g:ale_sign_warning = '▲'
+let g:ale_sign_error = '✗'
+highlight link ALEWarningSign String
+highlight link ALEErrorSign Title
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Javascript
@@ -241,59 +243,26 @@ autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" YAPF Python Formatter
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd FileType python nnoremap <leader>p :0,$!yapf<CR>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" iSort
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd FileType python nnoremap <leader>i :!isort %<CR>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" Selecta
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Run a given vim command on the results of fuzzy selecting from a given shell
-" command. See usage below.
-function! SelectaCommand(choice_command, selecta_args, vim_command)
-  try
-    let selection = system(a:choice_command . " | selecta " . a:selecta_args)
-  catch /Vim:Interrupt/
-    " Swallow the ^C so that the redraw below happens; otherwise there will be
-    " leftovers from selecta on the screen
-    redraw!
-    return
-  endtry
-  redraw!
-  exec a:vim_command . " " . selection
-endfunction
-
-" Find all files in all non-dot directories starting in the working directory.
-" Fuzzy select one of those. Open the selected file with :e.
-nnoremap <leader>o :call SelectaCommand("find * -type f", "", ":tabe")<cr>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" CommandT
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"nmap <leader>o :CommandT <CR>
-"autocmd FileType python setlocal completeopt-=preview
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" Syntastic
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_enable_signs=1
-let g:syntastic_auto_jump=1
-let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
-let g:syntastic_json_checkers=['jsonlint', 'jsonval']
-let g:syntastic_twig_checkers=['twiglint']
-let g:syntastic_enable_highlighting=1
-let g:syntastic_echo_current_error=1
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_quiet_messages = { "type": "style" }
-
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" Syntastic
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"
+"let g:syntastic_enable_signs=1
+"let g:syntastic_auto_jump=1
+"let g:syntastic_python_checkers = ['flake8']
+"let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
+"let g:syntastic_json_checkers=['jsonlint', 'jsonval']
+"let g:syntastic_twig_checkers=['twiglint']
+"let g:syntastic_enable_highlighting=1
+"let g:syntastic_echo_current_error=1
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_quiet_messages = { "type": "style" }
+"
