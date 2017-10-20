@@ -3,15 +3,14 @@ autocmd!
 call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 
-Plug 'altercation/vim-colors-solarized'
-Plug 'Chiel92/vim-autoformat'
-Plug 'tmhedberg/SimpylFold'
-Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'w0rp/ale'
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
 Plug 'sjl/gundo.vim'
 Plug 'fisadev/vim-isort'
+Plug 'mhinz/vim-signify'
+Plug 'tmhedberg/SimpylFold'
+Plug 'Chiel92/vim-autoformat'
+Plug 'altercation/vim-colors-solarized'
+Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -204,7 +203,7 @@ let g:gundo_right = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" All: AutoFormat & Python Formatter & Save & Sort & Save
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:formatter_yapf_style = 'pep8'
+let g:formatter_yapf_style = 'google'
 nmap <leader>f :Autoformat<CR> \| :update<CR> \| :!isort %<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -220,20 +219,33 @@ nmap <Leader>a :Ag<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" ALE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible
-filetype off
+filetype on
 let &runtimepath.=',~/.vim/bundle/ale'
 filetype plugin on
 " Write this in your vimrc file
 let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_text_changed = 1
 " You can disable this option too
 " if you don't want linters to run on opening a file
-let g:ale_lint_on_enter = 0
+let g:ale_lint_on_enter = 1
 let g:ale_sign_warning = '▲'
 let g:ale_sign_error = '✗'
 highlight link ALEWarningSign String
 highlight link ALEErrorSign Title
+function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+
+    return l:counts.total == 0 ? 'OK' : printf(
+    \   '%dW %dE',
+    \   all_non_errors,
+    \   all_errors
+    \)
+endfunction
+
+set statusline=%{LinterStatus()}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Javascript
