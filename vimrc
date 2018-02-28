@@ -7,11 +7,13 @@ Plug 'w0rp/ale'
 Plug 'sjl/gundo.vim'
 Plug 'fisadev/vim-isort'
 Plug 'mhinz/vim-signify'
+Plug 'tpope/vim-fugitive'
 Plug 'tmhedberg/SimpylFold'
 Plug 'airblade/vim-gitgutter'
 Plug 'Chiel92/vim-autoformat'
 Plug 'altercation/vim-colors-solarized'
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+Plug 'Valloric/YouCompleteMe'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -33,6 +35,8 @@ set tabstop=4
 set shiftwidth=4
 set autoindent
 set laststatus=2
+" Force cursor to remain in the middle of the screen
+set so=999
 set showmatch
 set incsearch
 set hlsearch
@@ -153,6 +157,9 @@ noremap <Leader>s :update<CR>
 noremap <leader>t :w\|:silent !echo "cd Workspace/git-bskyb-com/bms/ && source ~/.virtualenvs/bms/bin/activate && fab test" > ~/test-commands<CR>
 
 
+map ,d oimport pdb<CR>pdb.set_trace()<CR><ESC>
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " InsertTime COMMAND
 " Insert the current time
@@ -254,7 +261,7 @@ autocmd FileType python nnoremap <leader>i :!isort %<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let &runtimepath.=',~/.vim/bundle/ale'
 let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 1
+let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_enter = 1
 let g:ale_sign_warning = '!'
 let g:ale_sign_error = '✗'
