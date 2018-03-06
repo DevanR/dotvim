@@ -6,6 +6,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'w0rp/ale'
 Plug 'sjl/gundo.vim'
 Plug 'fisadev/vim-isort'
+Plug 'rizzatti/dash.vim'
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
 Plug 'tmhedberg/SimpylFold'
