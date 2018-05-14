@@ -3,18 +3,18 @@ autocmd!
 call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 
-Plug 'w0rp/ale'
-Plug 'sjl/gundo.vim'
+"Plug 'w0rp/ale'
+"Plug 'sjl/gundo.vim'
 Plug 'fisadev/vim-isort'
-Plug 'rizzatti/dash.vim'
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
+Plug 'sheerun/vim-polyglot'
 Plug 'tmhedberg/SimpylFold'
 Plug 'airblade/vim-gitgutter'
 Plug 'Chiel92/vim-autoformat'
+"Plug 'Valloric/YouCompleteMe'
 Plug 'altercation/vim-colors-solarized'
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-Plug 'Valloric/YouCompleteMe'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -257,37 +257,36 @@ autocmd FileType python nnoremap <leader>i :!isort %<CR>
 "let g:syntastic_quiet_messages = { "type": "style" }
 "
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" ALE
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let &runtimepath.=',~/.vim/bundle/ale'
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 0
-let g:ale_lint_on_enter = 1
-let g:ale_sign_warning = '!'
-let g:ale_sign_error = '✗'
-highlight link ALEWarningSign String
-highlight link ALEErrorSign Title
-let g:ale_completion_enabled = 1
-let g:ale_fix_on_save = 1
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-
-function! LinterStatus() abort
-    let l:counts = ale#statusline#Count(bufnr(''))
-
-    let l:all_errors = l:counts.error + l:counts.style_error
-    let l:all_non_errors = l:counts.total - l:all_errors
-
-    return l:counts.total == 0 ? 'OK' : printf(
-    \   '%dW %dE',
-    \   all_non_errors,
-    \   all_errors
-    \)
-endfunction
-
-set statusline=%{LinterStatus()}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" ALE
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"let &runtimepath.=',~/.vim/bundle/ale'
+"let g:ale_lint_on_save = 1
+"let g:ale_lint_on_text_changed = 0
+"let g:ale_lint_on_enter = 1
+"let g:ale_sign_warning = '!'
+"let g:ale_sign_error = '✗'
+"highlight link ALEWarningSign String
+"highlight link ALEErrorSign Title
+"let g:ale_completion_enabled = 1
+"let g:ale_fix_on_save = 1
+"let g:ale_echo_msg_error_str = 'E'
+"let g:ale_echo_msg_warning_str = 'W'
+"let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+"
+"function! LinterStatus() abort
+"    let l:counts = ale#statusline#Count(bufnr(''))
+"
+"    let l:all_errors = l:counts.error + l:counts.style_error
+"    let l:all_non_errors = l:counts.total - l:all_errors
+"
+"    return l:counts.total == 0 ? 'OK' : printf(
+"    \   '%dW %dE',
+"    \   all_non_errors,
+"    \   all_errors
+"    \)
+"endfunction
+"set statusline=%{LinterStatus()}
 
 " Load all plugins now.
 " Plugins need to be added to runtimepath before helptags can be generated.

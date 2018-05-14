@@ -1,7 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_cnt =6
 let g:netrw_dirhist_1='/private/etc/ansible'
 let g:netrw_dirhist_2='/Users/dre09/.tmux'
 let g:netrw_dirhist_3='/Users/dre09/Workspace/git-bskyb-com/bms/wholesale/tests'
 let g:netrw_dirhist_4='/Users/dre09/Workspace/git-bskyb-com/iap-insights/inputs/catalogues/core'
 let g:netrw_dirhist_5='/Users/dre09/.tmux'
+let g:netrw_dirhist_6='/Users/dre09/Workspace/git-bskyb-com/bms/docs'
