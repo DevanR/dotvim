@@ -3,16 +3,10 @@ autocmd!
 call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 
-"Plug 'w0rp/ale'
-"Plug 'sjl/gundo.vim'
 Plug 'fisadev/vim-isort'
-Plug 'mhinz/vim-signify'
-Plug 'tpope/vim-fugitive'
 Plug 'sheerun/vim-polyglot'
 Plug 'tmhedberg/SimpylFold'
-Plug 'airblade/vim-gitgutter'
 Plug 'Chiel92/vim-autoformat'
-"Plug 'Valloric/YouCompleteMe'
 Plug 'altercation/vim-colors-solarized'
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 
