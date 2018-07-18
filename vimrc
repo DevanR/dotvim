@@ -86,7 +86,6 @@ set spell
 " Have Vim clear terminal on exit
 au VimLeave * :!clear
 set foldmethod=syntax
-set nofoldenable
 " More natural split creation
 set splitbelow
 set splitright
@@ -232,55 +231,13 @@ autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd FileType python nnoremap <leader>i :!isort %<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""" Syntastic
+""" SimplyFold
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-"
-"let g:syntastic_enable_signs=1
-"let g:syntastic_auto_jump=1
-"let g:syntastic_python_checkers = ['flake8']
-"let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
-"let g:syntastic_json_checkers=['jsonlint', 'jsonval']
-"let g:syntastic_twig_checkers=['twiglint']
-"let g:syntastic_enable_highlighting=1
-"let g:syntastic_echo_current_error=1
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_quiet_messages = { "type": "style" }
-"
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""" ALE
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"let &runtimepath.=',~/.vim/bundle/ale'
-"let g:ale_lint_on_save = 1
-"let g:ale_lint_on_text_changed = 0
-"let g:ale_lint_on_enter = 1
-"let g:ale_sign_warning = '!'
-"let g:ale_sign_error = '✗'
-"highlight link ALEWarningSign String
-"highlight link ALEErrorSign Title
-"let g:ale_completion_enabled = 1
-"let g:ale_fix_on_save = 1
-"let g:ale_echo_msg_error_str = 'E'
-"let g:ale_echo_msg_warning_str = 'W'
-"let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-"
-"function! LinterStatus() abort
-"    let l:counts = ale#statusline#Count(bufnr(''))
-"
-"    let l:all_errors = l:counts.error + l:counts.style_error
-"    let l:all_non_errors = l:counts.total - l:all_errors
-"
-"    return l:counts.total == 0 ? 'OK' : printf(
-"    \   '%dW %dE',
-"    \   all_non_errors,
-"    \   all_errors
-"    \)
-"endfunction
-"set statusline=%{LinterStatus()}
+let g:SimpylFold_docstring_preview = 0
+let g:SimpylFold_fold_docstring = 1
+let b:SimpylFold_fold_docstring = 1
+let g:SimpylFold_fold_import = 0
+let b:SimpylFold_fold_import = 0
 
 " Load all plugins now.
 " Plugins need to be added to runtimepath before helptags can be generated.
