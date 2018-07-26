@@ -6,7 +6,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'fisadev/vim-isort'
 Plug 'sheerun/vim-polyglot'
 Plug 'tmhedberg/SimpylFold'
-Plug 'Chiel92/vim-autoformat'
+"Plug 'Chiel92/vim-autoformat'
+Plug 'ambv/black'
 Plug 'altercation/vim-colors-solarized'
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 
@@ -144,7 +145,7 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
 " Save shortcut with leader s
-noremap <Leader>s :update<CR>
+noremap <Leader>s :w<CR>
 
 " Shortcut for bms test
 "noremap <leader>t :w\|:silent !echo "cd Workspace/git-bskyb-com/bms/ && source ~/.virtualenvs/bms/bin/activate && ./manage.py test utils" > ~/test-commands<CR>
@@ -205,9 +206,10 @@ let g:gundo_right = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" All: AutoFormat & Python Formatter & Save & Sort & Save
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:formatter_yapf_style = 'pep8'
-nmap <leader>f :Autoformat<CR>
-
+"let g:formatter_yapf_style = 'pep8'
+"nmap <leader>f :Autoformat<CR>
+nmap <leader>f :Black<CR>
+autocmd BufWritePost *.py execute ':Black'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" fzf
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
