@@ -145,7 +145,7 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
 " Save shortcut with leader s
-noremap <Leader>s :w<CR>
+noremap <Leader>s :w<CR><CR>
 
 " Shortcut for bms test
 "noremap <leader>t :w\|:silent !echo "cd Workspace/git-bskyb-com/bms/ && source ~/.virtualenvs/bms/bin/activate && ./manage.py test utils" > ~/test-commands<CR>
