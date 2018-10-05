@@ -22,87 +22,90 @@ autocmd VimEnter *
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BASIC EDITING CONFIGURATION
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" allow unsaved background buffers and remember marks/undo for them
-" set hidden
-" " remember more commands and search history
-set history=10000
-set expandtab
-set tabstop=4
-set shiftwidth=4
-set autoindent
+
+" General
+let mapleader=","
+set nocompatible
+set backspace=indent,eol,start
+set history=1000
+set showcmd
+set showmode
+set autoread
+set hidden
+
+" User Interface
 set laststatus=2
-" Force cursor to remain in the middle of the screen
-set so=999
-set showmatch
+set ruler
+set wildmenu
+set tabpagemax=40
+set cursorline
+set number
+set relativenumber
+set noerrorbells
+set visualbell
+set background=dark
+set title
+
+" Swap and Backup
+set noswapfile
+set nobackup
+set nowb
+
+" Indentation
+set autoindent
+filetype plugin indent on
+set tabstop=4
+set shiftwidth=2
+set expandtab
+set nowrap
+
+" Search
 set incsearch
 set hlsearch
-" make searches case-sensitive only if they contain upper-case characters
-set ignorecase smartcase
-" highlight current line
-set cursorline
-if has('autocmd')
-	autocmd WinEnter * setlocal cursorline
-	autocmd WinLeave * setlocal nocursorline
-endif
-set cmdheight=1
-set switchbuf=useopen
-set showtabline=2
-set winwidth=79
-" This makes RVM work inside Vim. I have no idea why.
+set ignorecase
+set smartcase
+
+" Text Rendering
+set encoding=utf-8
+set linebreak
+set scrolloff=3
+set sidescrolloff=5
+syntax enable
+
+" Misc
+set confirm
+set nomodeline
+set nrformats-=octal
 set shell=bash
-" Prevent Vim from clobbering the scrollback buffer. See
-" http://www.shallowsky.com/linux/noaltscreen.html
-set t_ti= t_te=
-set nobackup
-set nowritebackup
-set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-set backspace=indent,eol,start
-set showcmd
-" Enable highlighting for syntax
-syntax on
-" Enable file type detection.
-" Use the default filetype settings, so that mail gets 'tw' set to 72,
-" 'cindent' is on in C files, etc.
-filetype plugin indent on
-" use emacs-style tab completion when selecting files, etc
-set wildmode=longest,list
-let mapleader=","
-" Fix slow O inserts
-:set timeout timeoutlen=1000 ttimeoutlen=100
+set spell
+
+"set cmdheight=1
+"set switchbuf=useopen
+"set showtabline=2
+"set winwidth=79
+"set t_ti= t_te= " Prevent Vim from clobbering the scrollback buffer.
+"set wildmode=longest,list
+":set timeout timeoutlen=1000 ttimeoutlen=100 " Fix slow O inserts
+"set modeline
+"set modelines=3
+"set nojoinspaces
+"set foldmethod=syntax
+"set splitbelow
+"set splitright
+"highlight CursorLineNR ctermbg=235 ctermfg=white
+"nmap <silent> ,/ :nohlsearch<CR> " Clear search history
+
 " Normally, Vim messes with iskeyword when you open a shell file. This can
 " leak out, polluting other file types even after a 'set ft=' change. This
 " variable prevents the iskeyword change so it can't hurt anyone.
 let g:sh_noisk=1
-" Modelines (comments that set vim options on a per-file basis)
-set modeline
-set modelines=3
-" Insert only one space when joining lines that contain sentence-terminating
-" punctuation like `.`.
-set nojoinspaces
-" If a file is changed outside of vim, automatically reload it without asking
-set autoread
-set number relativenumber
-set spell
-" Have Vim clear terminal on exit
-au VimLeave * :!clear
-set foldmethod=syntax
-" More natural split creation
-set splitbelow
-set splitright
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" CUSTOM AUTOCMDS
+" NETRW setting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-augroup vimrcEx
-	" Clear all autocmds in the group
-	autocmd!
-	autocmd FileType text setlocal textwidth=78
-	" Jump to last cursor position unless it's invalid or in an event handler
-	autocmd BufReadPost *
-				\ if line("'\"") > 0 && line("'\"") <= line("$") |
-				\   exe "normal g`\"" |
-				\ endif
-augroup END
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_winsize = 20
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COLOR
@@ -122,14 +125,10 @@ let g:solarized_contrast = "high"
 colorscheme solarized
 set background=dark
 
-set encoding=utf-8
-set fileencoding=utf-8
-highlight CursorLineNR ctermbg=235 ctermfg=white
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " STATUS LINE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
+set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MISC KEY MAPS
@@ -151,7 +150,7 @@ noremap <Leader>s :w<CR><CR>
 "noremap <leader>t :w\|:silent !echo "cd Workspace/git-bskyb-com/bms/ && source ~/.virtualenvs/bms/bin/activate && ./manage.py test utils" > ~/test-commands<CR>
 noremap <leader>t :w\|:silent !echo "cd Workspace/git-bskyb-com/bms/ && source ~/.virtualenvs/bms/bin/activate && fab test" > ~/test-commands<CR>
 
-
+" Shortcut to insert breakpoint
 map ,d oimport pdb<CR>pdb.set_trace()<CR><ESC>
 
 
@@ -172,11 +171,8 @@ noremap <Right> <NOP>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Sound
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set noerrorbells visualbell t_vb=
-if has('autocmd')
-	autocmd GUIEnter * set visualbell t_vb=
-endif
-set novisualbell
+set noerrorbells
+set visualbell
 set tm=500
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -186,22 +182,11 @@ set mouse=a                                              " Mouse events
 map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
 
-
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
 
 " Save keystrokes when accessing command
 nnoremap ; :
-
-nmap <silent> ,/ :nohlsearch<CR>                         " Clear search history
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" Gundo
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <leader>u :GundoToggle <cr>
-let g:gundo_width = 60
-let g:gundo_preview_height = 45
-let g:gundo_right = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" All: AutoFormat & Python Formatter & Save & Sort & Save
@@ -210,6 +195,7 @@ let g:gundo_right = 1
 "nmap <leader>f :Autoformat<CR>
 nmap <leader>f :Black<CR>
 autocmd BufWritePost *.py execute ':Black'
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" fzf
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
