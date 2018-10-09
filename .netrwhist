@@ -1,10 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
-let g:netrw_dirhist_1='/Users/dre09/Downloads/mastering_vim_premium'
-let g:netrw_dirhist_2='/Users/dre09/Downloads'
-let g:netrw_dirhist_3='/Users/dre09'
-let g:netrw_dirhist_4='/Users/dre09/Workspace'
-let g:netrw_dirhist_5='/Users/dre09'
-let g:netrw_dirhist_6='/Users/dre09/Workspace'
-let g:netrw_dirhist_7='/Users/dre09'
-let g:netrw_dirhist_8='/Users/dre09/.tmux'
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/Users/dre09/Workspace/git-bskyb-com/wholesale/wholesale/wholesale'
+let g:netrw_dirhist_2='/Users/dre09/Workspace/git-bskyb-com/wholesale/wholesale'
+let g:netrw_dirhist_3='/Users/dre09/Workspace/git-bskyb-com/wholesale/wholesale/api'

@@ -45,11 +45,14 @@ set noerrorbells
 set visualbell
 set background=dark
 set title
+set lazyredraw
 
-" Swap and Backup
+" Swap, Backup and Undo
 set noswapfile
 set nobackup
 set nowb
+set directory=$HOME/.vim/swp//
+set backupdir=$HOME/.vim/.backup//
 
 " Indentation
 set autoindent
@@ -64,6 +67,8 @@ set incsearch
 set hlsearch
 set ignorecase
 set smartcase
+nnoremap n nzz
+nnoremap N Nzz
 
 " Text Rendering
 set encoding=utf-8
@@ -201,7 +206,7 @@ autocmd BufWritePost *.py execute ':Black'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set rtp+=/usr/local/opt/fzf
 set rtp+=~/.fzf
-nmap ; :Buffers<CR>
+nmap <Leader>b :Buffers<CR>
 nmap <Leader>t :Tags<CR>
 nmap <Leader>o :Files<CR>
 nmap <Leader>a :Ag<CR>
