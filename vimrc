@@ -39,13 +39,22 @@ set ruler
 set wildmenu
 set tabpagemax=40
 set cursorline
+" Line Numbers
 set number
 set relativenumber
+augroup toggle_relative_number
+autocmd InsertEnter * :setlocal norelativenumber
+autocmd InsertLeave * :setlocal relativenumber
 set noerrorbells
 set visualbell
 set background=dark
 set title
 set lazyredraw
+" make . to work with visually selected lines
+vnoremap . :normal.<CR>
+" Move visual selection
+ vnoremap J :m '>+1<CR>gv=gv
+ vnoremap K :m '<-2<CR>gv=gv
 
 " Swap, Backup and Undo
 set noswapfile
@@ -69,6 +78,7 @@ set ignorecase
 set smartcase
 nnoremap n nzz
 nnoremap N Nzz
+nmap <silent> ,/ :nohlsearch<CR>
 
 " Text Rendering
 set encoding=utf-8
@@ -76,6 +86,10 @@ set linebreak
 set scrolloff=3
 set sidescrolloff=5
 syntax enable
+" highlight trailing whitespace
+match ErrorMsg '\s\+$'
+" remove trailing whitespaces automatically
+autocmd BufWritePre * :%s/\s\+$//e
 
 " Misc
 set confirm
@@ -83,22 +97,6 @@ set nomodeline
 set nrformats-=octal
 set shell=bash
 set spell
-
-"set cmdheight=1
-"set switchbuf=useopen
-"set showtabline=2
-"set winwidth=79
-"set t_ti= t_te= " Prevent Vim from clobbering the scrollback buffer.
-"set wildmode=longest,list
-":set timeout timeoutlen=1000 ttimeoutlen=100 " Fix slow O inserts
-"set modeline
-"set modelines=3
-"set nojoinspaces
-"set foldmethod=syntax
-"set splitbelow
-"set splitright
-"highlight CursorLineNR ctermbg=235 ctermfg=white
-"nmap <silent> ,/ :nohlsearch<CR> " Clear search history
 
 " Normally, Vim messes with iskeyword when you open a shell file. This can
 " leak out, polluting other file types even after a 'set ft=' change. This
