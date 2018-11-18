@@ -24,7 +24,8 @@ autocmd VimEnter *
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " General
-let mapleader=","
+nnoremap <SPACE> <Nop>
+let mapleader = ","
 set nocompatible
 set backspace=indent,eol,start
 set history=1000
@@ -39,7 +40,6 @@ set ruler
 set wildmenu
 set tabpagemax=40
 set cursorline
-" Line Numbers
 set number
 set relativenumber
 augroup toggle_relative_number
@@ -50,9 +50,7 @@ set visualbell
 set background=dark
 set title
 set lazyredraw
-" make . to work with visually selected lines
 vnoremap . :normal.<CR>
-" Move visual selection
  vnoremap J :m '>+1<CR>gv=gv
  vnoremap K :m '<-2<CR>gv=gv
 
@@ -147,7 +145,7 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
 " Save shortcut with leader s
-noremap <Leader>s :w<CR><CR>
+noremap <Leader>s :w<CR><CR><CR>
 
 " Shortcut for bms test
 "noremap <leader>t :w\|:silent !echo "cd Workspace/git-bskyb-com/bms/ && source ~/.virtualenvs/bms/bin/activate && ./manage.py test utils" > ~/test-commands<CR>
