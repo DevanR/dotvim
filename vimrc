@@ -88,6 +88,10 @@ match ErrorMsg '\s\+$'
 " remove trailing whitespaces automatically
 autocmd BufWritePre * :%s/\s\+$//e
 
+" move vertically by visual line with j and k
+nnoremap j gj
+nnoremap k gk
+
 " Misc
 set confirm
 set nomodeline
@@ -153,13 +157,6 @@ noremap <leader>t :w\|:silent !echo "cd Workspace/git-bskyb-com/bms/ && source ~
 " Shortcut to insert breakpoint
 map ,d oimport pdb<CR>pdb.set_trace()<CR><ESC>
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" InsertTime COMMAND
-" Insert the current time
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-command! InsertTime :normal a<c-r>=strftime('%F %H:%M:%S.0 %z')<cr>
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Bite the bullet
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -194,7 +191,7 @@ nnoremap ; :
 "let g:formatter_yapf_style = 'pep8'
 "nmap <leader>f :Autoformat<CR>
 nmap <leader>f :Black<CR>
-autocmd BufWritePost *.py execute ':Black'
+"autocmd BufWritePost *.py execute ':Black'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" fzf with RipGrep
