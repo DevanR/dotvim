@@ -1,7 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_cnt =6
 let g:netrw_dirhist_1='/Users/dre09/Workspace/git-bskyb-com/bms/wholesale/tests'
 let g:netrw_dirhist_2='/Users/dre09/Workspace/git-bskyb-com/wholesale/wholesale/wholesale/test'
 let g:netrw_dirhist_3='/Users/devan/.tmux'
 let g:netrw_dirhist_4='/Users/devan/Documents/opencraft'
 let g:netrw_dirhist_5='/Users/devan/Workspace/github/edx/edx-platform/openedx/features/course_experience'
+let g:netrw_dirhist_6='/Users/devan/Workspace/gitlab/labxchange-dev/frontend/src/library/components/ExplorePage'

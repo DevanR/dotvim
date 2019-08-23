@@ -24,7 +24,8 @@ autocmd VimEnter *
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " General
-let mapleader = ","
+inoremap jk <ESC>
+let mapleader = " "
 set nocompatible
 set backspace=indent,eol,start
 set history=1000
@@ -155,7 +156,7 @@ noremap <Leader>s :w<CR><CR><CR>
 noremap <leader>t :w\|:silent !echo "cd Workspace/git-bskyb-com/bms/ && source ~/.virtualenvs/bms/bin/activate && fab test" > ~/test-commands<CR>
 
 " Shortcut to insert breakpoint
-map ,d oimport pdb<CR>pdb.set_trace()<CR><ESC>
+map <Leader>d oimport pdb<CR>pdb.set_trace()<CR><ESC>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Bite the bullet
