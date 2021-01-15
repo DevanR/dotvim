@@ -6,10 +6,12 @@ call plug#begin('~/.vim/plugged')
 Plug 'fisadev/vim-isort'
 Plug 'sheerun/vim-polyglot'
 Plug 'tmhedberg/SimpylFold'
-Plug 'ambv/black'
+Plug 'chiel92/vim-autoformat'
 Plug 'altercation/vim-colors-solarized'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'yuttie/comfortable-motion.vim'
+Plug 'rizzatti/dash.vim'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -24,7 +26,6 @@ autocmd VimEnter *
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " General
-inoremap jk <ESC>
 let mapleader = " "
 set nocompatible
 set backspace=indent,eol,start
@@ -51,8 +52,8 @@ set background=dark
 set title
 set lazyredraw
 vnoremap . :normal.<CR>
- vnoremap J :m '>+1<CR>gv=gv
- vnoremap K :m '<-2<CR>gv=gv
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
 
 " Swap, Backup and Undo
 set noswapfile
@@ -88,10 +89,6 @@ syntax enable
 match ErrorMsg '\s\+$'
 " remove trailing whitespaces automatically
 autocmd BufWritePre * :%s/\s\+$//e
-
-" move vertically by visual line with j and k
-nnoremap j gj
-nnoremap k gk
 
 " Misc
 set confirm
@@ -151,12 +148,11 @@ nnoremap <c-l> <c-w>l
 " Save shortcut with leader s
 noremap <Leader>s :w<CR><CR><CR>
 
-" Shortcut for bms test
-"noremap <leader>t :w\|:silent !echo "cd Workspace/git-bskyb-com/bms/ && source ~/.virtualenvs/bms/bin/activate && ./manage.py test utils" > ~/test-commands<CR>
-noremap <leader>t :w\|:silent !echo "cd Workspace/git-bskyb-com/bms/ && source ~/.virtualenvs/bms/bin/activate && fab test" > ~/test-commands<CR>
-
 " Shortcut to insert breakpoint
-map <Leader>d oimport pdb<CR>pdb.set_trace()<CR><ESC>
+map <Leader>d otry:<CR>catch BaseException as error:<CR>import pdb<CR>pdb.set_trace()<CR><ESC>
+
+" Mapping for formatting/alignment
+noremap <Leader>a gqap
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Bite the bullet
@@ -189,14 +185,19 @@ nnoremap ; :
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" All: AutoFormat & Python Formatter & Save & Sort & Save
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"let g:formatter_yapf_style = 'pep8'
-"nmap <leader>f :Autoformat<CR>
-nmap <leader>f :Black<CR>
+
+" yapf
+let g:formatter_yapf_style = 'pep8'
+nmap <leader>f :Autoformat<CR>
+
+" black
+" nmap <leader>f :Black<CR>
 "autocmd BufWritePost *.py execute ':Black'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" fzf with RipGrep
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set rtp+=/usr/local/opt/fzf
 " This is the default extra key bindings
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
@@ -213,10 +214,13 @@ command! -bang -nargs=* Rg
 command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
+command! -bang -nargs=* Find
+  \ call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+
 set rtp+=~/.fzf
 nmap <Leader>b :Buffers<CR>
 nmap <Leader>t :Tags<CR>
-nmap <Leader>f :Files<CR>
+nmap <Leader>o :Files<CR>
 nmap <Leader>g :Rg<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -248,16 +252,13 @@ packloadall
 silent! helptags ALL
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""" RipGrep
+""" Comfortable Motion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" --column: Show column number
-" --line-number: Show line number
-" --no-heading: Do not show file headings in results
-" --fixed-strings: Search term as a literal string
-" --ignore-case: Case insensitive search
-" --no-ignore: Do not respect .gitignore, etc...
-" --hidden: Search hidden files and folders
-" --follow: Follow symlinks
-" --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
-" --color: Search color options
-command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+let g:comfortable_motion_no_default_key_mappings = 1
+let g:comfortable_motion_friction = 80.0
+let g:comfortable_motion_air_drag = 2.0
+let g:comfortable_motion_impulse_multiplier = 1  " Feel free to increase/decrease this value.
+nnoremap <silent> <C-d> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 2)<CR>
+nnoremap <silent> <C-u> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -2)<CR>
+nnoremap <silent> <C-f> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 4)<CR>
+nnoremap <silent> <C-b> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -4)<CR>
