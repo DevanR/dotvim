@@ -12,6 +12,7 @@ Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'rizzatti/dash.vim'
+Plug 'CoatiSoftware/vim-sourcetrail'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -262,3 +263,15 @@ nnoremap <silent> <C-d> :call comfortable_motion#flick(g:comfortable_motion_impu
 nnoremap <silent> <C-u> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -2)<CR>
 nnoremap <silent> <C-f> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 4)<CR>
 nnoremap <silent> <C-b> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -4)<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" SourceTrail
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>as :SourcetrailRefresh<CR>
+nnoremap <leader>aa :SourcetrailActivateToken<CR>
+
+let g:sourcetrail_autostart = 1
+
+let g:sourcetrail_ip = "localhost"
+let g:sourcetrail_to_vim_port = 6666
+let g:vim_to_sourcetrail_port = 6667

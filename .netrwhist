@@ -1,4 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =2
+let g:netrw_dirhistcnt =4
+let g:netrw_dirhist_4='/Users/devan/.pyenv/versions/3.8.5/envs/emax_project/lib/python3.8/site-packages'
+let g:netrw_dirhist_3='/Users/devan/Workspace/technogen/ecabler/tests/cable_calculator'
 let g:netrw_dirhist_2='/Users/devan/Workspace/technogen/ecabler/tests/__pycache__'
 let g:netrw_dirhist_1='/Users/devan/.tmux'
