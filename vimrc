@@ -3,6 +3,7 @@ autocmd!
 call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 
+Plug 'psf/black', { 'branch': 'stable' }
 Plug 'fisadev/vim-isort'
 Plug 'sheerun/vim-polyglot'
 Plug 'tmhedberg/SimpylFold'
@@ -11,8 +12,6 @@ Plug 'altercation/vim-colors-solarized'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'yuttie/comfortable-motion.vim'
-Plug 'rizzatti/dash.vim'
-Plug 'CoatiSoftware/vim-sourcetrail'
 
 " Add plugins to &runtimepath
 call plug#end()
