@@ -9,7 +9,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'tmhedberg/SimpylFold'
 Plug 'chiel92/vim-autoformat'
 Plug 'altercation/vim-colors-solarized'
-Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'yuttie/comfortable-motion.vim'
 
